@@ -8,8 +8,28 @@
 #ifndef AUDIOMANAGER_H_
 #define AUDIOMANAGER_H_
 
-//// Singleton
-class AudioManager {
+#include "SimpleAudioEngine.h"
+#include "cocos2d.h"
+
+class AudioManager
+{
+public:
+	static AudioManager* sharedAudioManager();
+	bool IsEnableBackground();
+	bool IsEnableEffect();
+	void SetEnableBackground(bool b);
+	void SetEnableEffect(bool b);
+	void LoadBackground(char* path);
+	void PlayBackground(char* path, bool loop);
+	void PauseBackground(char* path);
+	void StopBackground(char* path);
+	void PlayEffect(char *path);
+
+private:
+	AudioManager();
+
+	bool m_bEnableBackground;
+	bool m_bEnableEffect;
 };
 
 #endif /* AUDIOMANAGER_H_ */

@@ -7,9 +7,24 @@
 
 #include "LevelManager.h"
 
+static LevelManager *m_Instance;
+
+LevelManager::LevelManager()
+{
+
+}
+
 Level* LevelManager::getLevel(int level)
 {
 	return 0;
+}
+
+LevelManager* LevelManager::sharedLevelManager()
+{
+	if (m_Instance == 0)
+		m_Instance = new LevelManager();
+	return m_Instance;
+
 }
 
 //short** LevelManager::getArray()

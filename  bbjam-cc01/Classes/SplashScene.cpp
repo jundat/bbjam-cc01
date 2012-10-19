@@ -7,6 +7,7 @@
 
 #include "SplashScene.h"
 #include "SimpleAudioEngine.h"
+#include "MainGameScene.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -26,5 +27,15 @@ bool SplashScene::init()
 		return false;
 	}
 
+	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+	this->setTouchEnabled(true);
+
+	return true;
+}
+
+bool SplashScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
+{
+	CCLog("touchdown");
+	CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
 	return true;
 }
