@@ -23,7 +23,7 @@ public:
 	void PlayBackground(char* path, bool loop);
 	void PauseBackground(char* path);
 	void StopBackground(char* path);
-	void PlayEffect(char *path);
+	void PlayEffect(char *path, int loopTime = 0);
 
 private:
 	AudioManager();
