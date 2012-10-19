@@ -25,6 +25,9 @@ int main(int argc, char **argv)
 		height = 600;
 	}
 
+	CCLog("width = %i", width);
+	CCLog("height = %i", height);
+
 	CCApplication::sharedApplication()->setResourceRootPath("app/native/Resources/");
 
     CCEGLView* eglView = CCEGLView::sharedOpenGLView();
