@@ -8,6 +8,7 @@
 #ifndef AUDIOMANAGER_H_
 #define AUDIOMANAGER_H_
 
+//// Singleton
 class AudioManager {
 };
 
