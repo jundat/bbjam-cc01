@@ -11,7 +11,9 @@
 #include "cocos2d.h"
 #include "GameResourceConstant.h"
 USING_NS_CC;
-class Level
+#include "cocos2d.h"
+
+class Level : public cocos2d::CCNode
 {
 private:
 	int* m_ArrayID;
