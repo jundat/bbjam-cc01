@@ -20,10 +20,11 @@ public:
 	void changePlayerType(int playerID);
 	int getPlayerType();
 	void updateGravity();
+	void back();
 	void updateAngle();
 	float getTargetAngle();
 	bool isRotateDone();
-	void back();
+
 
 private:
 	int m_PlayerType;
