@@ -15,7 +15,13 @@ using namespace CocosDenshion;
 
 AboutScene::AboutScene()
 {
-
+	CCFileUtils* reader = CCFileUtils::sharedFileUtils();
+	unsigned long* size;
+	unsigned char* content = reader->getFileData(
+		"file.txt",		//file path
+		"",				//mode
+		size				//size
+		);
 }
 
 AboutScene::~AboutScene()

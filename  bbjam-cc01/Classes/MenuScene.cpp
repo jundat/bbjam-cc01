@@ -18,7 +18,6 @@ using namespace CocosDenshion;
 
 MenuScene::MenuScene()
 {
-
 }
 
 MenuScene::~MenuScene()
