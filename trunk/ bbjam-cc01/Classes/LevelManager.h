@@ -4,14 +4,16 @@
  *  Created on: 20 Oct 2012
  *      Author: Loc
  */
-#include "Level.h"
-#include "GameConstant.h"
-#include "cocos2d.h"
 
 #ifndef LEVELMANAGER_H_
 #define LEVELMANAGER_H_
 
+#include "GameConstant.h"
+#include "cocos2d.h"
+
 USING_NS_CC;
+
+class Level;
 
 // singleton
 class LevelManager

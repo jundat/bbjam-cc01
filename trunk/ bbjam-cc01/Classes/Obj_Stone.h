@@ -13,7 +13,7 @@
 class Obj_Stone : public GameObject
 {
 public:
-	Obj_Stone(int x, int y);
+	Obj_Stone(float x, float y);
 	int GetID();
 	CCSprite* CreateSprite();
 };

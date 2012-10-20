@@ -8,8 +8,10 @@
 #include "Obj_Trap.h"
 #include "GameConstant.h"
 
-Obj_Trap::Obj_Trap(int x, int y):GameObject(x, y)
+Obj_Trap::Obj_Trap(float x, float y):GameObject(x, y)
 {
+	m_iW = GRID_SIZE * 2;
+	m_iH = GRID_SIZE * 2;
 	m_Sprite = CreateSprite();
 
 	if (m_Sprite != 0)

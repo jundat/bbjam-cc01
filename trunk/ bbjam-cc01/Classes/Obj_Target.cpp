@@ -7,13 +7,20 @@
 
 #include "Obj_Target.h"
 #include "GameConstant.h"
+#include "stdlib.h"
 
-Obj_Target::Obj_Target(int x, int y):GameObject(x, y)
+Obj_Target::Obj_Target(float x, float y):GameObject(x, y)
 {
 	m_Sprite = CreateSprite();
 
 	if (m_Sprite != 0)
+	{
 		this->addChild(m_Sprite);
+		this->setRotation(rand());
+		CCRepeatForever *actionForever = new CCRepeatForever();
+		actionForever->initWithAction(CCRotateBy::create(1.0, 360));
+		m_Sprite->runAction(actionForever);
+	}
 }
 
 int Obj_Target::GetID()

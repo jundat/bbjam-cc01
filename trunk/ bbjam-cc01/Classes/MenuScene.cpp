@@ -13,8 +13,6 @@
 #include "AudioManager.h"
 #include "DefileMacro.h"
 
-USING_NS_CC;
-
 using namespace CocosDenshion;
 
 MenuScene::MenuScene()

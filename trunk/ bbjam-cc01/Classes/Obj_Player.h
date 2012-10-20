@@ -13,9 +13,15 @@
 class Obj_Player : public GameObject
 {
 public:
-	Obj_Player(int x, int y);
+	Obj_Player(float x, float y);
 	int GetID();
 	CCSprite* CreateSprite();
+
+	void changePlayerType(int playerID);
+	int getPlayerType();
+	void updateGravity();
+private:
+	int m_PlayerType;
 };
 
 #endif

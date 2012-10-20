@@ -33,9 +33,10 @@ Level::Level(int level)
 		return;
 
 	m_ArrayID = getArrayID(level);
-	CCLog("--- Get Array ---");
 	initLevel();
-	CCLog("--- Init Level ---");
+
+	// init gravity
+	g_Gravity = GRAVITY_LEVEL[level];
 }
 
 
@@ -44,31 +45,22 @@ void Level::initLevel()
 //	CCSpriteBatchNode *batch = new CCSpriteBatchNode::batchNodeWithFile();
 	unsigned int ID;
 	GameObject *obj;
+	bool isLoadPlayer = false;
 
-//	CCLog("m_ArrayID = %i", MAP_COLOR_PLAYER);
-//	CCLog("m_ArrayID = %i", MAP_COLOR_STONE);
-//	CCLog("m_ArrayID = %i", MAP_COLOR_TRAP);
-//	CCLog("m_ArrayID = %i", MAP_COLOR_WOOD);
-//	CCLog("m_ArrayID = %i", MAP_COLOR_TARGET);
 	for (int i = 0; i < NUM_GRID_HEIGHT; i++)
 	{
 		for (int j = 0; j < NUM_GRID_WIDTH; j++)
 		{
-//			CCLog("i = %i", i);
-//			CCLog("j = %i", j);
 			ID = m_ArrayID[i * NUM_GRID_WIDTH + j];
-//			CCLog("m_ArrayID = %i", ID);
-//			int random = (i * NUM_GRID_WIDTH + j);
-//			CCLog("random = %i", random);
-//			random = random % 5;
-//			CCLog("random2 = %i", random);
 			switch (ID & 0x00ffffff)
 			{
 			case MAP_COLOR_PLAYER:
+				if (isLoadPlayer) continue;
+				isLoadPlayer = true;
 				CCLog("MAP_COLOR_PLAYER");
-				obj = new Obj_Player(j, i);
-				obj->setPosition(j * GRID_SIZE, (NUM_GRID_HEIGHT - i - 1) * GRID_SIZE);
-				this->addChild(obj);
+				m_Player = new Obj_Player(j, i);
+				m_Player->setPosition(j * GRID_SIZE + (GRID_SIZE >> 1), (NUM_GRID_HEIGHT - i - 1) * GRID_SIZE - (GRID_SIZE >> 1));
+				this->addChild(m_Player);
 				break;
 			case MAP_COLOR_STONE:
 				CCLog("MAP_COLOR_STONE");
@@ -83,10 +75,17 @@ void Level::initLevel()
 				this->addChild(obj);
 				break;
 			case MAP_COLOR_WOOD:
+				if (j == NUM_GRID_WIDTH) break;
+				if (i == NUM_GRID_HEIGHT - 1) break;
+
+				if ((m_ArrayID[i * NUM_GRID_WIDTH + j + 1] & 0x00ffffff) != MAP_COLOR_WOOD
+						|| (m_ArrayID[(i + 1) * NUM_GRID_WIDTH + j] & 0x00ffffff) != MAP_COLOR_WOOD) break;
+
 				CCLog("MAP_COLOR_WOOD");
 				obj = new Obj_Wood(j, i);
-				obj->setPosition(j * GRID_SIZE, (NUM_GRID_HEIGHT - i - 1) * GRID_SIZE);
+				obj->setPosition(j * GRID_SIZE + (GRID_SIZE >> 1), (NUM_GRID_HEIGHT - i - 1) * GRID_SIZE - (GRID_SIZE >> 1));
 				this->addChild(obj);
+				m_ArrWood.push_back((Obj_Wood*)obj);
 				break;
 			case MAP_COLOR_TARGET:
 				CCLog("MAP_COLOR_TARGET");
@@ -97,4 +96,14 @@ void Level::initLevel()
 			}
 		}
 	}
+}
+
+Obj_Player* Level::getPlayer()
+{
+	return m_Player;
+}
+
+std::vector<Obj_Wood*> Level::getListWood()
+{
+	return m_ArrWood;
 }

@@ -13,7 +13,7 @@
 class Obj_Wood : public GameObject
 {
 public:
-	Obj_Wood(int x, int y);
+	Obj_Wood(float x, float y);
 	int GetID();
 	CCSprite* CreateSprite();
 };
