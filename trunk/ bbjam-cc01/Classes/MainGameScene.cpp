@@ -14,6 +14,7 @@
 #include "MenuScene.h"
 #include "math.h"
 #include "Level.h"
+#include "GameData.h"
 
 using namespace CocosDenshion;
 
@@ -41,7 +42,6 @@ bool MainGameScene::init()
 
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 	this->setTouchEnabled(true);
-	scheduleUpdate();
 
 	return true;
 }
@@ -65,35 +65,43 @@ void MainGameScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 	if (abs(deltaX) > abs(deltaY))
 	{
 		if (deltaX < 0)
-			g_Gravity = GRAVITY_LEFT;//left
+		{
+			GameData::sharedGameData()->g_Gravity = GRAVITY_LEFT;//left
+			CCLog("GRAVITY_LEFT");
+		}
 		else
-			g_Gravity = GRAVITY_RIGHT;//right
+		{
+			GameData::sharedGameData()->g_Gravity = GRAVITY_RIGHT;//right
+			CCLog("GRAVITY_RIGHT");
+		}
 	}
 	else
 	{
 		if (deltaY < 0)
-			g_Gravity = GRAVITY_DOWN;//down
+		{
+			GameData::sharedGameData()->g_Gravity = GRAVITY_DOWN;//down
+			CCLog("GRAVITY_DOWN");
+		}
 		else
-			g_Gravity = GRAVITY_UP;//top
+		{
+			GameData::sharedGameData()->g_Gravity = GRAVITY_UP;//top
+			CCLog("GRAVITY_UP");
+		}
 	}
 	UpdateGravity();
 }
 
 void MainGameScene::InitMap()
 {
-	m_Level = LevelManager::sharedLevelManager()->getLevel(g_CurrentLevel);
+	m_Level = LevelManager::sharedLevelManager()->getLevel(GameData::sharedGameData()->g_CurrentLevel);
 	this->addChild(m_Level);
 	m_Level->setPosition(48, 250);
 }
 
 void MainGameScene::UpdateGravity()
 {
-//	m_Level->getPlayer()->updateGravity();
-}
-
-void MainGameScene::update(float delta)
-{
-
+	m_Level->updateGravity();
+//	m_Level->getPlayer()->updateAngle();
 }
 
 void MainGameScene::initSubMenu()
@@ -106,9 +114,9 @@ void MainGameScene::initSubMenu()
 	m_miSpiderBoxz = CCMenuItemImage::create("spiderboxz.png", "spiderboxz.png", this, menu_selector(MainGameScene::onSpiderBoxz));
 	m_miRockBoxz = CCMenuItemImage::create("rockboxz.png", "rockboxz.png", this, menu_selector(MainGameScene::onRockboxz));
 
-	if (!ALLOW_TYPE_PLAYER[g_CurrentLevel][0]) m_miMegaBoxz->setVisible(false);
-	if (!ALLOW_TYPE_PLAYER[g_CurrentLevel][1]) m_miSpiderBoxz->setVisible(false);
-	if (!ALLOW_TYPE_PLAYER[g_CurrentLevel][2]) m_miRockBoxz->setVisible(false);
+	if (!ALLOW_TYPE_PLAYER[GameData::sharedGameData()->g_CurrentLevel][0]) m_miMegaBoxz->setVisible(false);
+	if (!ALLOW_TYPE_PLAYER[GameData::sharedGameData()->g_CurrentLevel][1]) m_miSpiderBoxz->setVisible(false);
+	if (!ALLOW_TYPE_PLAYER[GameData::sharedGameData()->g_CurrentLevel][2]) m_miRockBoxz->setVisible(false);
 
 	m_miMegaBoxz->setPosition(100, 100);
 	m_miSpiderBoxz->setPosition(100, 100);

@@ -14,6 +14,8 @@ Obj_Wood::Obj_Wood(float x, float y):GameObject(x, y)
 
 	if (m_Sprite != 0)
 		this->addChild(m_Sprite);
+	m_iW = GRID_SIZE * 2;
+	m_iH = GRID_SIZE * 2;
 }
 
 

@@ -29,6 +29,7 @@ static const int MAP_WOOD 	= 1;
 static const int MAP_PLAYER	= 2;
 static const int MAP_TRAP		= 3;
 static const int MAP_TARGET	= 4;
+static const int MAP_WIN = 5;
 
 static int MAX_LEVEL = 68;
 
@@ -41,7 +42,6 @@ static const int GRAVITY_DOWN	= 1;
 static const int GRAVITY_LEFT 	= 2;
 static const int GRAVITY_RIGHT 	= 3;
 
-static int g_Gravity;
-static int g_CurrentLevel = 22;
+static const int GRAVITY_SPEED = 5;
 
 #endif /* GAMECONSTANT_H_ */

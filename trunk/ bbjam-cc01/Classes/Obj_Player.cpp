@@ -7,6 +7,8 @@
 
 #include "Obj_Player.h"
 #include "GameConstant.h"
+#include "GameData.h"
+#include "math.h"
 
 Obj_Player::Obj_Player(float x, float y):GameObject(x, y)
 {
@@ -17,6 +19,8 @@ Obj_Player::Obj_Player(float x, float y):GameObject(x, y)
 		this->addChild(m_Sprite);
 
 	m_PlayerType = PLAYER_MEGABOXZ;
+	m_iW = GRID_SIZE * 2;
+	m_iH = GRID_SIZE * 2;
 }
 
 int Obj_Player::GetID()
@@ -62,15 +66,83 @@ int Obj_Player::getPlayerType()
 
 void Obj_Player::updateGravity()
 {
-	switch (g_Gravity)
+	switch (GameData::sharedGameData()->g_Gravity)
 	{
 	case GRAVITY_UP:
+		this->setPositionY(this->getPositionY() + GRAVITY_SPEED);
 		break;
 	case GRAVITY_DOWN:
+		this->setPositionY(this->getPositionY() - GRAVITY_SPEED);
 		break;
 	case GRAVITY_LEFT:
+		this->setPositionX(this->getPositionX() - GRAVITY_SPEED);
 		break;
 	case GRAVITY_RIGHT:
+		this->setPositionX(this->getPositionX() + GRAVITY_SPEED);
 		break;
 	}
+}
+
+void Obj_Player::back()
+{
+	switch (GameData::sharedGameData()->g_Gravity)
+	{
+	case GRAVITY_UP:
+		this->setPositionY(this->getPositionY() - GRAVITY_SPEED);
+		break;
+	case GRAVITY_DOWN:
+		this->setPositionY(this->getPositionY() + GRAVITY_SPEED);
+		break;
+	case GRAVITY_LEFT:
+		this->setPositionX(this->getPositionX() + GRAVITY_SPEED);
+		break;
+	case GRAVITY_RIGHT:
+		this->setPositionX(this->getPositionX() - GRAVITY_SPEED);
+		break;
+	}
+}
+
+void Obj_Player::updateAngle()
+{
+	CCLog("update angle -- gravity = %i", GameData::sharedGameData()->g_Gravity);
+//	while (m_Sprite->getRotation() < 0)
+//		m_Sprite->setRotation(m_Sprite->getRotation() + 360);
+
+	switch (GameData::sharedGameData()->g_Gravity)
+	{
+	case GRAVITY_UP:
+		m_fTargetAngle = 180;
+		break;
+	case GRAVITY_DOWN:
+		m_fTargetAngle = 0;
+		break;
+	case GRAVITY_LEFT:
+		m_fTargetAngle = 90;
+		break;
+	case GRAVITY_RIGHT:
+		m_fTargetAngle = 270;
+		break;
+	}
+//	CCLog("update angle = %f, sprite angle = %f", angle, m_Sprite->getRotation());
+	CCFiniteTimeAction*  frequence = CCSequence::create(
+					CCRotateTo::create(0.4, m_fTargetAngle),
+					CCCallFuncN::create( this, callfuncN_selector(Obj_Player::onDoneRotate) ),
+					NULL);
+	this->runAction(frequence);
+	m_bRotateDone = false;
+}
+
+void Obj_Player::onDoneRotate(CCNode* sender)
+{
+	m_bRotateDone = true;
+}
+
+float Obj_Player::getTargetAngle()
+{
+	return m_fTargetAngle;
+}
+
+bool Obj_Player::isRotateDone()
+{
+	return m_bRotateDone;
 }

@@ -28,7 +28,6 @@ private:
 	Level *m_Level;
 	void InitMap();
 	void UpdateGravity();
-	void update(float delta);
 	void initSubMenu();
 
 	CCMenuItem *m_miMegaBoxz;
