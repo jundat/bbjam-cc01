@@ -165,6 +165,7 @@ void SplashScene::update(float delta)
 
 void SplashScene::gotoMenu(CCNode* sender)
 {
+	
 	CCDirector::sharedDirector()->replaceScene(MenuScene::scene());
 }
 
