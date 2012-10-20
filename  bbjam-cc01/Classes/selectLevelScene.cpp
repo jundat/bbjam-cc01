@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include "MenuScene.h"
 #include "MainGameScene.h"
+#include "GameData.h"
+
 USING_NS_CC;
 //using namespace CocosDenshion;
 #define CCCA(x)   (x->copy()->autorelease())
@@ -45,7 +47,7 @@ void SelectLevelScene::onTouchbtnLevel(CCObject* pSender)
 	CCMenuItem* pMenuItem = (CCMenuItem*)pSender;
 	int level = pMenuItem->getZOrder()-1000+1;
 	CCLog("Index level : %i",level);
-	g_CurrentLevel = level;
+	GameData::sharedGameData()->g_CurrentLevel = level;
 	CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
 
 }
