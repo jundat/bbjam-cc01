@@ -1,3 +1,4 @@
+
 #include "selectLevelScene.h"
 #include "GameConstant.h"
 #include "cocos2d.h"
@@ -9,8 +10,13 @@
 #include "MenuScene.h"
 #include "MainGameScene.h"
 #include "GameData.h"
+#include "SimpleAudioEngine.h"
+#include "AudioManager.h"
+
 
 USING_NS_CC;
+using namespace CocosDenshion;
+
 //using namespace CocosDenshion;
 #define CCCA(x)   (x->copy()->autorelease())
 CCScene* SelectLevelScene::scene()
@@ -28,6 +34,7 @@ bool SelectLevelScene::init()
 	{
 		return false;
 	}
+	
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	m_pSpritebackground = CCSprite::spriteWithFile("background1.png");
 	m_pSpritebackground->setPosition(ccp(WIDTH >> 1, HEIGHT >> 1));
@@ -42,18 +49,28 @@ bool SelectLevelScene::init()
 	showIndexLayer();
 	return true;
 }
+
 void SelectLevelScene::onTouchbtnLevel(CCObject* pSender)
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
+	AudioManager::sharedAudioManager()->StopBackground("sndMenu.mp3");
+	
+	
+
 	CCMenuItem* pMenuItem = (CCMenuItem*)pSender;
 	int level = pMenuItem->getZOrder()-1000+1;
 	CCLog("Index level : %i",level);
 	GameData::sharedGameData()->g_CurrentLevel = level;
 	CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
-
 }
 
 void SelectLevelScene::onTouchbtnNext(CCObject* pSender)
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
+	//
+
 	m_index = (++m_index)%(m_total);
 
 	CCActionInterval*  actionTo = CCMoveTo::create(1.0f, CCPointMake(-WIDTH, 0));
@@ -74,6 +91,10 @@ void SelectLevelScene::onTouchbtnNext(CCObject* pSender)
 
 void SelectLevelScene::onTouchbtnPrev(CCObject* pSender)
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
+	//
+
 	m_index = (--m_index < 0 ?m_total-1:m_index) ;
 
 	CCActionInterval*  actionTo = CCMoveTo::create(1.0f, CCPointMake(WIDTH, 0));
@@ -95,6 +116,10 @@ void SelectLevelScene::onTouchbtnPrev(CCObject* pSender)
 
 void SelectLevelScene::onTouchbtnHome(CCObject* pSender)
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
+	//
+
 	CCDirector::sharedDirector()->replaceScene(MenuScene::scene());
 }
 
@@ -193,3 +218,6 @@ void SelectLevelScene::onChangeLayerComplete(CCNode* psender)
 		layerLevel->removeFromParentAndCleanup(true);
 	}
 }
+
+
+

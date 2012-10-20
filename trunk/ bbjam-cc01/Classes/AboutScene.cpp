@@ -9,6 +9,7 @@
 #include "AboutScene.h"
 #include "MenuScene.h"
 #include "SimpleAudioEngine.h"
+#include "AudioManager.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -83,6 +84,10 @@ bool AboutScene::init()
 
 void AboutScene::gotoMenu(CCObject* sender)
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
+	//
+
 	CCDirector::sharedDirector()->replaceScene(MenuScene::scene());
 }
 
