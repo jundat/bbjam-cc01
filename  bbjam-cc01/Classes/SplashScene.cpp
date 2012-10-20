@@ -77,6 +77,7 @@ void SplashScene::fallBlock(CCNode* sender)
 	scheduleUpdate();
 }
 
+
 void SplashScene::update(float delta)
 {
 	int i = -1;
@@ -139,16 +140,35 @@ void SplashScene::update(float delta)
 			CCRotateBy::create(0.2, 360),
 			NULL);
 
-		CCFiniteTimeAction*  frequence = CCSequence::create(
-			move1,
-			jump5,
-			jump6,
-			//jump7,
-			jump8,
-			NULL);
-
-		m_SprBox[i]->runAction(frequence);
+		if(i != 2)
+		{
+			CCFiniteTimeAction*  frequence = CCSequence::create(
+				move1,
+				jump5,
+				jump6,
+				//jump7,
+				jump8,
+				NULL);
+			m_SprBox[i]->runAction(frequence);
+		}
+		else
+		{
+			CCFiniteTimeAction*  frequence = CCSequence::create(
+				move1,
+				jump5,
+				jump6,
+				//jump7,
+				jump8,
+				CCCallFuncN::create( this, callfuncN_selector(SplashScene::gotoMenu) ), 
+				NULL);
+			m_SprBox[i]->runAction(frequence);
+		}		
 	}	
+}
+
+void SplashScene::gotoMenu(CCNode* sender)
+{
+	CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
 }
 
 CCScene* SplashScene::scene()
