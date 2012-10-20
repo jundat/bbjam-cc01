@@ -18,11 +18,11 @@ static int NUM_GRID_WIDTH 	= 16;
 static int NUM_GRID_HEIGHT 	= 20;
 
 // Define : Color map
-static const unsigned int MAP_COLOR_STONE      = 0x000000;
-static const unsigned int MAP_COLOR_WOOD      = 0xC3C3C3;
-static const unsigned int MAP_COLOR_PLAYER     = 0x4A52A5;
-static const unsigned int MAP_COLOR_TRAP       = 0xED1C24;
-static const unsigned int MAP_COLOR_TARGET     = 0x63BD4A;
+static const int MAP_COLOR_STONE      = 0x000000;
+static const int MAP_COLOR_WOOD      = 0xC3C3C3;
+static const int MAP_COLOR_PLAYER     = 0xA5524A;
+static const int MAP_COLOR_TRAP       = 0x241CED;
+static const int MAP_COLOR_TARGET     = 0x4ABD63;
 
 static const int MAP_STONE	= 0;
 static const int MAP_WOOD 	= 1;
