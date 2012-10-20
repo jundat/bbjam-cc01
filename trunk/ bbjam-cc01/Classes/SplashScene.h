@@ -29,6 +29,8 @@ public:
 	SplashScene();
 	virtual ~SplashScene();
 
+	void gotoMenu(CCNode* sender);
+
 	void update(float delta);
 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
 };
