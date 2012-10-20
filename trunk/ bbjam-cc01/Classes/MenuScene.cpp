@@ -13,11 +13,16 @@
 #include "AudioManager.h"
 #include "DefileMacro.h"
 #include "selectLevelScene.h"
+#include "AudioManager.h"
 
 using namespace CocosDenshion;
 
 MenuScene::MenuScene()
 {
+	if(!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
+	{
+		AudioManager::sharedAudioManager()->PlayBackground("sndMenu.mp3", true);
+	}
 }
 
 MenuScene::~MenuScene()
@@ -101,6 +106,7 @@ bool MenuScene::init()
 
 void MenuScene::gotoPlay(CCObject* sender)
 {
+	AudioManager::sharedAudioManager()->StopBackground("sndMenu.mp3");
 	CCDirector::sharedDirector()->replaceScene(SelectLevelScene::scene());
 }
 
