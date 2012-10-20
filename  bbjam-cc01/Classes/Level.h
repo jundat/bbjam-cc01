@@ -32,5 +32,7 @@ public:
 	Level(int level);
 	Obj_Player* getPlayer();
 	std::vector<Obj_Wood*> getListWood();
+	void update(float delta);
+	void updateGravity();
 };
 #endif /* LEVEL_H_ */

@@ -20,8 +20,17 @@ public:
 	void changePlayerType(int playerID);
 	int getPlayerType();
 	void updateGravity();
+	void updateAngle();
+	float getTargetAngle();
+	bool isRotateDone();
+	void back();
+
 private:
 	int m_PlayerType;
+	float m_fTargetAngle;
+	bool m_bRotateDone;
+
+	void onDoneRotate(CCNode* sender);
 };
 
 #endif
