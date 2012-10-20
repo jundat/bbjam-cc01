@@ -17,7 +17,9 @@ class Level : public cocos2d::CCNode
 {
 private:
 	int* m_ArrayID;
+
 	int* getArrayID(int level);
+	void initLevel();
 public:
 	Level(int level);
 };

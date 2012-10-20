@@ -13,7 +13,9 @@
 class Obj_Wood : public GameObject
 {
 public:
-	int GetID() = 0;
+	Obj_Wood(int x, int y);
+	int GetID();
+	CCSprite* CreateSprite();
 };
 
 #endif /* OBJ_WOOD_H_ */

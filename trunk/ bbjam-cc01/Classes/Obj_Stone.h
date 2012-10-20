@@ -13,7 +13,9 @@
 class Obj_Stone : public GameObject
 {
 public:
-	int GetID() = 0;
+	Obj_Stone(int x, int y);
+	int GetID();
+	CCSprite* CreateSprite();
 };
 
 #endif /* OBJ_STONE_H_ */
