@@ -7,7 +7,7 @@
  */
 
 #include "SplashScene.h"
-#include "SimpleAudioEngine.h"
+#include "AudioManager.h"
 #include "GameConstant.h"
 #include "MainGameScene.h"
 #include "LoadingScene.h"
@@ -72,6 +72,10 @@ bool SplashScene::init()
 void SplashScene::fallBlock(CCNode* sender)
 {
 	scheduleUpdate();
+	
+	//preload background music
+	AudioManager::sharedAudioManager()->LoadBackground("sndMenu.mp3");
+	AudioManager::sharedAudioManager()->LoadBackground("sndGame.mp3");
 }
 
 
