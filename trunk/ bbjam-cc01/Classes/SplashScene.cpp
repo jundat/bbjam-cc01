@@ -74,10 +74,9 @@ void SplashScene::fallBlock(CCNode* sender)
 	scheduleUpdate();
 	
 	//preload background music
-	AudioManager::sharedAudioManager()->LoadBackground("sndMenu.mp3");
-	AudioManager::sharedAudioManager()->LoadBackground("sndGame.mp3");
+	AudioManager::sharedAudioManager()->LoadBackground("sndMenu.wav");
+	AudioManager::sharedAudioManager()->LoadBackground("sndGame.wav");
 }
-
 
 void SplashScene::update(float delta)
 {

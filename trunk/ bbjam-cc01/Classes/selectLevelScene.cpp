@@ -207,7 +207,7 @@ void SelectLevelScene::showIndexLayer ()
 	{
 		int x = (i - (m_total>>1))*100 + (m_total%2?0:50)+WIDTH>>1;
 		CCSprite* pSIndex = CCSprite::create((i==m_index?"c_w.png":"c_b.png"));
-		pSIndex->setPosition(ccp(x,240));
+		pSIndex->setPosition(ccp(x, 240));
 		m_pLayerIndex->addChild(pSIndex);
 	}
 
