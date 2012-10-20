@@ -9,6 +9,7 @@
 #include "SplashScene.h"
 #include "SimpleAudioEngine.h"
 #include "MainGameScene.h"
+#include "LoadingScene.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -183,7 +184,7 @@ CCScene* SplashScene::scene()
 bool SplashScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
 	CCLog("SplashScene: touchdown");
-	CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
+	CCDirector::sharedDirector()->replaceScene(LoadingScene::scene());
 	return true;
 }
 

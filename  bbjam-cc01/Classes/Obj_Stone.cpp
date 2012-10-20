@@ -24,5 +24,5 @@ int Obj_Stone::GetID()
 
 CCSprite* Obj_Stone::CreateSprite()
 {
-	return CCSprite::spriteWithFile("block_1.png");
+	return CCSprite::spriteWithFile("block_2.png");
 }

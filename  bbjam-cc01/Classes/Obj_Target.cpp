@@ -23,5 +23,5 @@ int Obj_Target::GetID()
 
 CCSprite* Obj_Target::CreateSprite()
 {
-	return CCSprite::spriteWithFile("block_1.png");
+	return CCSprite::spriteWithFile("block_3.png");
 }

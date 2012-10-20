@@ -16,9 +16,9 @@ USING_NS_CC;
 class Level : public cocos2d::CCNode
 {
 private:
-	int* m_ArrayID;
+	unsigned int* m_ArrayID;
 
-	int* getArrayID(int level);
+	unsigned int* getArrayID(int level);
 	void initLevel();
 public:
 	Level(int level);
