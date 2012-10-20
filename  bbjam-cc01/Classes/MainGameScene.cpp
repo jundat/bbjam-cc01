@@ -56,6 +56,9 @@ bool MainGameScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 
 void MainGameScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
+	if (m_Level->isDroping())
+		return;
+
 	CCPoint pt = pTouch->getLocation();
 
 	int deltaX = pt.x - m_HelperPoint.x;
@@ -97,7 +100,8 @@ void MainGameScene::InitMap()
 {
 	m_Level = LevelManager::sharedLevelManager()->getLevel(GameData::sharedGameData()->g_CurrentLevel);
 	this->addChild(m_Level);
-	m_Level->setPosition(48, 250);
+	m_Level->setPosition(48, 230);
+	m_Level->m_refMain = this;
 }
 
 void MainGameScene::UpdateGravity()
@@ -241,8 +245,6 @@ void MainGameScene::onLost ()
 	pDialog->addChild(pBoard);
 	pBoard->addChild(pMenu);
 	this->addChild(pDialog);
-
-
 }
 void MainGameScene::onWin ()
 {

@@ -24,7 +24,7 @@ public:
 	void updateAngle();
 	float getTargetAngle();
 	bool isRotateDone();
-
+	void updateDirection();
 
 private:
 	int m_PlayerType;

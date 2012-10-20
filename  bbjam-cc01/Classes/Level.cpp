@@ -48,6 +48,7 @@ Level::Level(int level)
 
 	// init gravity
 	GameData::sharedGameData()->g_Gravity = GRAVITY_LEVEL[level];
+	m_Player->updateDirection();
 	scheduleUpdate();
 }
 
@@ -97,14 +98,16 @@ void Level::update(float delta)
 			{
 				m_Player->back();
 				m_bPlayerMovable = false;
-
+				m_bWoodMovable = false;
+				m_refMain->onWin();
 				break;
 			}
 			else if (temp == MAP_TRAP)
 			{
 				m_Player->back();
 				m_bPlayerMovable = false;
-
+				m_bWoodMovable = false;
+				m_refMain->onLost();
 				break;
 			}
 			else if (temp == MAP_STONE)
@@ -156,11 +159,9 @@ void Level::update(float delta)
 			if (collide)
 			{
 				m_ArrWood[i]->back();
-				break;
 			}
 			else
 			{
-
 				m_bWoodMovable = true;
 			}
 		}
@@ -180,8 +181,7 @@ void Level::update(float delta)
 			case GRAVITY_UP:
 				if (m_Player->getPositionY() > m_ArrWood[i]->getPositionY())
 				{
-
-					// user dead
+					processDead(m_ArrWood[i]);
 				}
 				else
 				{
@@ -192,8 +192,7 @@ void Level::update(float delta)
 			case GRAVITY_DOWN:
 				if (m_Player->getPositionY() < m_ArrWood[i]->getPositionY())
 				{
-
-					// user dead
+					processDead(m_ArrWood[i]);
 				}
 				else
 				{
@@ -204,8 +203,7 @@ void Level::update(float delta)
 			case GRAVITY_LEFT:
 				if (m_Player->getPositionX() < m_ArrWood[i]->getPositionX())
 				{
-
-					// user dead
+					processDead(m_ArrWood[i]);
 				}
 				else
 				{
@@ -217,7 +215,7 @@ void Level::update(float delta)
 				if (m_Player->getPositionX() > m_ArrWood[i]->getPositionX())
 				{
 
-					// user dead
+					processDead(m_ArrWood[i]);
 				}
 				else
 				{
@@ -227,6 +225,21 @@ void Level::update(float delta)
 				break;
 			}
 		}
+	}
+}
+
+void Level::processDead(Obj_Wood *wood)
+{
+	CCLog("player dead");
+	if (m_Player->getPlayerType() == PLAYER_ROCKBOXZ)
+	{
+		wood->back();
+	}
+	else
+	{
+		m_bPlayerMovable = false;
+		m_bWoodMovable = false;
+		m_refMain->onLost();
 	}
 }
 
@@ -261,7 +274,7 @@ void Level::initLevel()
 				isLoadPlayer = true;
 				CCLog("MAP_COLOR_PLAYER");
 				m_Player = new Obj_Player(j, i);
-				m_Player->setPosition(j * GRID_SIZE + (GRID_SIZE >> 1), (NUM_GRID_HEIGHT - i) * GRID_SIZE - (GRID_SIZE >> 1));
+				m_Player->setPosition(j * GRID_SIZE + (GRID_SIZE >> 1), (NUM_GRID_HEIGHT - i) * GRID_SIZE - 21);
 				this->addChild(m_Player);
 				break;
 			case MAP_COLOR_STONE:
@@ -287,7 +300,7 @@ void Level::initLevel()
 
 				CCLog("MAP_COLOR_WOOD");
 				obj = new Obj_Wood(j, i);
-				obj->setPosition(j * GRID_SIZE + (GRID_SIZE >> 1), (NUM_GRID_HEIGHT - i) * GRID_SIZE - (GRID_SIZE >> 1));
+				obj->setPosition(j * GRID_SIZE + (GRID_SIZE >> 1), (NUM_GRID_HEIGHT - i) * GRID_SIZE - 21);
 				this->addChild(obj);
 				m_ArrWood.push_back((Obj_Wood*)obj);
 				break;
