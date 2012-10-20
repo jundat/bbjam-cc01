@@ -171,6 +171,10 @@ void MainGameScene::onNext(CCObject* sender)
 		GameData::sharedGameData()->g_CurrentLevel++;
 		GameData::sharedGameData()->g_UnlockLevel++;
 		CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
+	}else if (GameData::sharedGameData()->g_CurrentLevel < GameData::sharedGameData()->g_UnlockLevel)
+	{
+		GameData::sharedGameData()->g_CurrentLevel++;
+		CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
 	}
 }
 void MainGameScene::onResume(CCObject* sender)
@@ -232,14 +236,14 @@ void MainGameScene::onLost ()
 {
 	CCLayer* pDialog = CCLayer::create();
 	CCSprite* pBoard = CCSprite::spriteWithFile("board.png");
-	CCMenuItemImage* miReplay = CCMenuItemImage::create("btn_replay.png", "btn_replay.png", this, menu_selector(MainGameScene::onReplay));
+	CCMenuItemImage* miReplay = CCMenuItemImage::create("btn_replay.png", "btn_replay.png", this, menu_selector(MainGameScene::onRetry));
 	CCMenuItemImage* miBackMenu = CCMenuItemImage::create("btn_menu.png", "btn_menu.png", this, menu_selector(MainGameScene::onBackMenu));
 	CCMenu* pMenu = CCMenu::create(miReplay,miBackMenu,NULL);;
 
 	pDialog->setPosition(WIDTH>>1,HEIGHT>>1);
 	pBoard->setPosition(CCPointZero);
-	miReplay->setPosition(ccp(miReplay->getContentSize().width/2,miReplay->getContentSize().height/2));
-	miBackMenu->setPosition(ccp(pDialog->getContentSize().width-miBackMenu->getContentSize().width/2,miBackMenu->getContentSize().height/2));	
+	miReplay->setPosition(50,50);
+	miBackMenu->setPosition(450,50);	
 	pMenu->setPosition(CCPointZero);
 
 	pDialog->addChild(pBoard);
@@ -258,9 +262,9 @@ void MainGameScene::onWin ()
 
 	pDialog->setPosition(WIDTH>>1,HEIGHT>>1);
 	pBoard->setPosition(CCPointZero);
-	miReplay->setPosition(ccp(miReplay->getContentSize().width/2,miReplay->getContentSize().height/2));
-	miBackMenu->setPosition(ccp(pDialog->getContentSize().width/2-miBackMenu->getContentSize().width/2,miBackMenu->getContentSize().height/2));	
-	miNext->setPosition(ccp(pDialog->getContentSize().width-miBackMenu->getContentSize().width/2,miBackMenu->getContentSize().height/2));	
+	miReplay->setPosition(50,50);
+	miBackMenu->setPosition(250,50);	
+	miNext->setPosition(450,50);	
 	pMenu->setPosition(CCPointZero);
 
 	pDialog->addChild(pBoard);
