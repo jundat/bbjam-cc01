@@ -9,6 +9,7 @@
 #include "MenuScene.h"
 #include "SimpleAudioEngine.h"
 #include "MainGameScene.h"
+#include "AboutScene.h"
 
 USING_NS_CC;
 
@@ -41,8 +42,6 @@ bool MenuScene::init()
 	}
 
 	//init here
-	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
-	this->setTouchEnabled(true);
 	CCSize s = CCDirector::sharedDirector()->getWinSize();
 	//
 	//background
@@ -58,7 +57,7 @@ bool MenuScene::init()
 	//
 	int sw = 768;
 	int sh = 1280;
-	int _space  = 100;
+	int _space  = 150;
 	
 	m_itemPlay->setPosition(0,0 + _space * 2);
 	m_itemOption->setPosition(0,0 +  _space * 1);
@@ -69,7 +68,6 @@ bool MenuScene::init()
 	CCMenu* m_Menu =CCMenu::create(m_itemPlay, m_itemOption, m_itemTutorial, m_itemAbout, m_itemExit, NULL);
 
 	addChild(m_Menu);
-
 	//
 	return true;
 }
@@ -91,7 +89,7 @@ void MenuScene::gotoTurtorial(CCObject* sender)
 
 void MenuScene::gotoAbout(CCObject* sender)
 {
-
+	CCDirector::sharedDirector()->replaceScene(AboutScene::scene());
 }
 
 void MenuScene::gotoExit(CCObject* sender)
