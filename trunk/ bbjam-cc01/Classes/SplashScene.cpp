@@ -165,8 +165,7 @@ void SplashScene::update(float delta)
 }
 
 void SplashScene::gotoMenu(CCNode* sender)
-{
-	
+{	
 	CCDirector::sharedDirector()->replaceScene(MenuScene::scene());
 }
 
@@ -185,4 +184,3 @@ bool SplashScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 	CCDirector::sharedDirector()->replaceScene(MenuScene::scene());
 	return true;
 }
-
