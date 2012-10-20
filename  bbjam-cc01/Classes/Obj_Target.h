@@ -13,7 +13,9 @@
 class Obj_Target : public GameObject
 {
 public:
-	int getID() = 0;
+	Obj_Target(int x, int y);
+	int GetID();
+	CCSprite* CreateSprite();
 };
 
 #endif /* OBJ_TARGET_H_ */

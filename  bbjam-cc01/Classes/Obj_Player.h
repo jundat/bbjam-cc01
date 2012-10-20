@@ -13,7 +13,9 @@
 class Obj_Player : public GameObject
 {
 public:
-	int GetID() = 0;
+	Obj_Player(int x, int y);
+	int GetID();
+	CCSprite* CreateSprite();
 };
 
 #endif

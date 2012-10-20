@@ -6,6 +6,7 @@
 //static char* IMG_LEVEL_PRE = "/levels/level1";
 //static char* IMG_LEVEL_POST = ".png";
 //static char* IMG_LEVEL1 = "/levels/level1.png";
+
 static char* IMG_LEVEL[] = {"",
 	"/levels/level1.png",
 	"/levels/level2.png",

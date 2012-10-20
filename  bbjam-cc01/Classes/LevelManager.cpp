@@ -16,7 +16,8 @@ LevelManager::LevelManager()
 
 Level* LevelManager::getLevel(int level)
 {
-	return 0;
+	CCLog("--- Get Level ---");
+	return new Level(level);
 }
 
 LevelManager* LevelManager::sharedLevelManager()
