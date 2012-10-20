@@ -22,6 +22,9 @@ public:
 
 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
 	virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+
+	void onLost ();
+	void onWin  ();
 private:
 	CCSprite *m_sprBackground;
 	CCPoint m_HelperPoint;
@@ -51,9 +54,6 @@ private:
 	void onMegaBoxz(CCObject* sender);
 	void onSpiderBoxz(CCObject* sender);
 	void onRockboxz(CCObject* sender);
-
-	void onLost ();
-	void onWin  ();
 };
 
 #endif /* MAINGAMESCENE_H_ */

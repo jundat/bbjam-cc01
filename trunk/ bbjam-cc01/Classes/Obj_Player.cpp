@@ -137,6 +137,25 @@ void Obj_Player::updateAngle()
 	m_bRotateDone = false;
 }
 
+void Obj_Player::updateDirection()
+{
+	switch (GameData::sharedGameData()->g_Gravity)
+	{
+	case GRAVITY_UP:
+		this->setRotation(180);
+		break;
+	case GRAVITY_DOWN:
+		this->setRotation(0);
+		break;
+	case GRAVITY_LEFT:
+		this->setRotation(90);
+		break;
+	case GRAVITY_RIGHT:
+		this->setRotation(270);
+		break;
+	}
+}
+
 void Obj_Player::onDoneRotate(CCNode* sender)
 {
 	m_bRotateDone = true;
