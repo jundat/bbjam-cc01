@@ -61,10 +61,12 @@ void SelectLevelScene::onTouchbtnLevel(CCObject* pSender)
 
 	CCMenuItem* pMenuItem = (CCMenuItem*)pSender;
 	int level = pMenuItem->getZOrder()-1000+1;
-	if(level<28)
-	CCLog("Index level : %i",level);
-	GameData::sharedGameData()->g_CurrentLevel = level;
-	CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
+	if(level<=28 && level <=GameData::sharedGameData()->g_UnlockLevel){
+		CCLog("Index level : %i",level);
+		GameData::sharedGameData()->g_CurrentLevel = level;
+		CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
+	}
+	
 }
 
 void SelectLevelScene::onTouchbtnNext(CCObject* pSender)

@@ -12,6 +12,7 @@
 #include "MainGameScene.h"
 #include "LoadingScene.h"
 #include "MenuScene.h"
+#include "GameData.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -30,7 +31,7 @@ bool SplashScene::init()
 	{
 		return false;
 	}
-
+	//GameData::sharedGameData()->readLevel();
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 	this->setTouchEnabled(true);
 
