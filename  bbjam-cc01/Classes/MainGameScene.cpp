@@ -35,6 +35,10 @@ bool MainGameScene::init()
 		return false;
 	}
 
+	//
+	AudioManager::sharedAudioManager()->PlayBackground("sndGame.wav", true);
+	//
+
 	m_sprBackground = CCSprite::spriteWithFile("background2.png");
 	m_sprBackground->setPosition(ccp(WIDTH >> 1, HEIGHT >> 1));
 	this->addChild(m_sprBackground);
@@ -50,6 +54,10 @@ bool MainGameScene::init()
 
 bool MainGameScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
+	//
+
 	m_HelperPoint = pTouch->getLocation();
 	return true;
 }
@@ -145,6 +153,10 @@ void MainGameScene::initSubMenu()
 
 void MainGameScene::onPause(CCObject* sender)
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndPause.wav", 0);
+	//
+
 	CCScaleTo *scale1 = CCScaleTo::create(0.2, 1.0);
 	CCScaleTo *scale2 = CCScaleTo::create(0.2, 1.0);
 	CCScaleTo *scale3 = CCScaleTo::create(0.2, 1.0);
@@ -166,6 +178,10 @@ void MainGameScene::onRetry(CCObject* sender)
 }
 void MainGameScene::onNext(CCObject* sender)
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
+	//
+
 	if(GameData::sharedGameData()->g_CurrentLevel == GameData::sharedGameData()->g_UnlockLevel && GameData::sharedGameData()->g_UnlockLevel< MAX_LEVEL)
 	{
 		GameData::sharedGameData()->g_CurrentLevel++;
@@ -179,6 +195,10 @@ void MainGameScene::onNext(CCObject* sender)
 }
 void MainGameScene::onResume(CCObject* sender)
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndPause.wav", 0);
+	//
+
 	CCScaleTo *scale1 = CCScaleTo::create(0.2, 0);
 	CCScaleTo *scale2 = CCScaleTo::create(0.2, 0);
 	CCScaleTo *scale3 = CCScaleTo::create(0.2, 0);
@@ -191,6 +211,10 @@ void MainGameScene::onResume(CCObject* sender)
 }
 void MainGameScene::onBackMenu(CCObject* sender)
 {
+	//
+	AudioManager::sharedAudioManager()->StopBackground();
+	//
+
 	CCDirector::sharedDirector()->replaceScene(MenuScene::scene());
 }
 
@@ -234,6 +258,10 @@ void MainGameScene::onRockboxz(CCObject* sender)
 }
 void MainGameScene::onLost ()
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndDead.wav", 0);
+	//
+
 	CCLayer* pDialog = CCLayer::create();
 	CCSprite* pBoard = CCSprite::spriteWithFile("board.png");
 	CCMenuItemImage* miReplay = CCMenuItemImage::create("btn_replay.png", "btn_replay.png", this, menu_selector(MainGameScene::onRetry));
@@ -252,6 +280,10 @@ void MainGameScene::onLost ()
 }
 void MainGameScene::onWin ()
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndWin.wav",  0);
+	//
+
 	CCLayer* pDialog = CCLayer::create();
 	CCSprite* pBoard = CCSprite::spriteWithFile("board.png");
 	CCMenuItemImage* miReplay = CCMenuItemImage::create("btn_replay.png", "btn_replay.png", this, menu_selector(MainGameScene::onRetry));
