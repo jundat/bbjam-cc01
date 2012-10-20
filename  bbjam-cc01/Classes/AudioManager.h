@@ -21,8 +21,8 @@ public:
 	void SetEnableEffect(bool b);
 	void LoadBackground(char* path);
 	void PlayBackground(char* path, bool loop);
-	void PauseBackground(char* path);
-	void StopBackground(char* path);
+	void PauseBackground();
+	void StopBackground();
 	void PlayEffect(char *path, int loopTime);
 
 private:

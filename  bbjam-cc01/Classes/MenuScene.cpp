@@ -13,6 +13,7 @@
 #include "AudioManager.h"
 #include "DefileMacro.h"
 #include "selectLevelScene.h"
+#include "TutorialScene.h"
 
 using namespace CocosDenshion;
 
@@ -69,6 +70,14 @@ bool MenuScene::init()
 	CCMenuItem* soundOn = CCMenuItemImage::create("music_on.png", NULL, NULL);
 	CCMenuItem* soundOff = CCMenuItemImage::create("music_off.png", NULL, NULL);
 	m_itemMusic = CCMenuItemToggle::itemWithTarget(this,  menu_selector(MenuScene::toggleMusic), soundOn, soundOff, NULL);
+	if(AudioManager::sharedAudioManager()->IsEnableBackground())
+	{
+		m_itemMusic->setSelectedIndex(0);
+	}
+	else
+	{
+		m_itemMusic->setSelectedIndex(1);
+	}
 	//
 	int sw = 768;
 	int sh = 1280;
@@ -118,6 +127,7 @@ void MenuScene::gotoTurtorial(CCObject* sender)
 	AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
 
 	//
+	CCDirector::sharedDirector()->replaceScene(TutorialScene::scene());
 }
 
 void MenuScene::gotoAbout(CCObject* sender)
