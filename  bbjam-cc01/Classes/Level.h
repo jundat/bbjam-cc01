@@ -22,17 +22,22 @@ class Level : public cocos2d::CCNode
 {
 private:
 	unsigned int* m_ArrayID;
+	int **m_ID;
 
 	unsigned int* getArrayID(int level);
 	void initLevel();
 
 	Obj_Player *m_Player;
 	std::vector<Obj_Wood*> m_ArrWood;
+
+	bool m_bPlayerMovable;
+	bool m_bWoodMovable;
 public:
 	Level(int level);
 	Obj_Player* getPlayer();
 	std::vector<Obj_Wood*> getListWood();
 	void update(float delta);
 	void updateGravity();
+	bool isDroping();
 };
 #endif /* LEVEL_H_ */

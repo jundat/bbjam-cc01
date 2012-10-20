@@ -16,6 +16,8 @@ public:
 	Obj_Wood(float x, float y);
 	int GetID();
 	CCSprite* CreateSprite();
+	void updateGravity();
+	void back();
 };
 
 #endif /* OBJ_WOOD_H_ */

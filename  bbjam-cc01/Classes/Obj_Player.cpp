@@ -74,16 +74,16 @@ void Obj_Player::updateGravity()
 	switch (GameData::sharedGameData()->g_Gravity)
 	{
 	case GRAVITY_UP:
-		this->setPositionY(this->getPositionY() + GRAVITY_SPEED);
+		this->setPositionY(this->getPositionY() + 1);
 		break;
 	case GRAVITY_DOWN:
-		this->setPositionY(this->getPositionY() - GRAVITY_SPEED);
+		this->setPositionY(this->getPositionY() - 1);
 		break;
 	case GRAVITY_LEFT:
-		this->setPositionX(this->getPositionX() - GRAVITY_SPEED);
+		this->setPositionX(this->getPositionX() - 1);
 		break;
 	case GRAVITY_RIGHT:
-		this->setPositionX(this->getPositionX() + GRAVITY_SPEED);
+		this->setPositionX(this->getPositionX() + 1);
 		break;
 	}
 }
@@ -93,16 +93,16 @@ void Obj_Player::back()
 	switch (GameData::sharedGameData()->g_Gravity)
 	{
 	case GRAVITY_UP:
-		this->setPositionY(this->getPositionY() - GRAVITY_SPEED);
+		this->setPositionY(this->getPositionY() - 1);
 		break;
 	case GRAVITY_DOWN:
-		this->setPositionY(this->getPositionY() + GRAVITY_SPEED);
+		this->setPositionY(this->getPositionY() + 1);
 		break;
 	case GRAVITY_LEFT:
-		this->setPositionX(this->getPositionX() + GRAVITY_SPEED);
+		this->setPositionX(this->getPositionX() + 1);
 		break;
 	case GRAVITY_RIGHT:
-		this->setPositionX(this->getPositionX() - GRAVITY_SPEED);
+		this->setPositionX(this->getPositionX() - 1);
 		break;
 	}
 }
@@ -130,7 +130,7 @@ void Obj_Player::updateAngle()
 	}
 //	CCLog("update angle = %f, sprite angle = %f", angle, m_Sprite->getRotation());
 	CCFiniteTimeAction*  frequence = CCSequence::create(
-					CCRotateTo::create(0.4, m_fTargetAngle),
+					CCRotateTo::create(0.2, m_fTargetAngle),
 					CCCallFuncN::create( this, callfuncN_selector(Obj_Player::onDoneRotate) ),
 					NULL);
 	this->runAction(frequence);

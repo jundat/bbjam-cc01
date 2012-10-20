@@ -42,7 +42,7 @@ static const int GRAVITY_DOWN	= 1;
 static const int GRAVITY_LEFT 	= 2;
 static const int GRAVITY_RIGHT 	= 3;
 
-static const int GRAVITY_SPEED = 5;
+static const int GRAVITY_SPEED = 8;
 static const int  ID_MB_DEFAULT = 0;
 static const int  ID_SB_DEFAULT = 2;
 static const int  ID_RB_DEFAULT = 1;
