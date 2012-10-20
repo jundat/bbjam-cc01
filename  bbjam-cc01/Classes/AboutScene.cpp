@@ -67,7 +67,7 @@ bool AboutScene::init()
 
 	//menu
 	CCMenuItemImage* itemBack = CCMenuItemImage::create("button_up.png", "button_down.png", this, menu_selector(AboutScene::gotoMenu) );
-	CCLabelBMFont* back = CCLabelBMFont::create("back", "idevice_r_50.fnt");
+	CCLabelBMFont* back = CCLabelBMFont::create("Back", "idevice_r_50.fnt");
 
 	itemBack->setPosition(0, - s.height/2 + 70);
 	back->setPosition(s.width/2, 75);

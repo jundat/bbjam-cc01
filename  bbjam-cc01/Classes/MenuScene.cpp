@@ -49,6 +49,10 @@ bool MenuScene::init()
 	m_spBackground->setPosition(ccp(s.width/2, s.height/2));
 	addChild(m_spBackground);
 
+	//logo
+	m_sprLogo = CCSprite::create("hero_box.png");
+	m_sprLogo->setPosition(ccp(s.width/2, s.height/2 + 460));
+	addChild(m_sprLogo);
 	
 
 	//menu item
@@ -71,15 +75,15 @@ bool MenuScene::init()
 	m_itemAbout->setPosition(0,		50 +  _space * -1);
 	m_itemExit->setPosition(0,		50 + _space * -2);
 	//
-	m_itemMusic->setPosition(- s.width/2 + 120, - s.height / 2 + 200);
+	m_itemMusic->setPosition(s.width/2 - 120, - s.height / 2 + 200);
 	CCMenu* m_Menu =CCMenu::create(m_itemPlay, /*m_itemOption,*/ m_itemTutorial, m_itemAbout, m_itemExit, m_itemMusic, NULL);
 	addChild(m_Menu);
 
 	//text in menu item
-	CCLabelBMFont* tPlay = CCLabelBMFont::create("play", "idevice_r_50.fnt");
-	CCLabelBMFont* tTurtorial = CCLabelBMFont::create("turtorial", "idevice_r_50.fnt");
-	CCLabelBMFont* tAbout = CCLabelBMFont::create("about", "idevice_r_50.fnt");
-	CCLabelBMFont* tExit = CCLabelBMFont::create("exit", "idevice_r_50.fnt");
+	CCLabelBMFont* tPlay = CCLabelBMFont::create("Play", "idevice_r_50.fnt");
+	CCLabelBMFont* tTurtorial = CCLabelBMFont::create("Turtorial", "idevice_r_50.fnt");
+	CCLabelBMFont* tAbout = CCLabelBMFont::create("About", "idevice_r_50.fnt");
+	CCLabelBMFont* tExit = CCLabelBMFont::create("Exit", "idevice_r_50.fnt");
 	//
 	tPlay->setPosition(s.width/2,		s.height/2 + 60 + _space * 1);
 	tTurtorial->setPosition(s.width/2,	s.height/2 + 60 + _space * 0);

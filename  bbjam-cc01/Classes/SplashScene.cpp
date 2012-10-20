@@ -48,9 +48,9 @@ bool SplashScene::init()
 	m_SprBox[2] = CCSprite::create("spiderboxz.png");
 
 	addChild(m_SprLogo, 2);
-	addChild(m_SprBox[0], 3);
-	addChild(m_SprBox[1], 3);
-	addChild(m_SprBox[2], 3);	
+	addChild(m_SprBox[0], 9);
+	addChild(m_SprBox[1], 9);
+	addChild(m_SprBox[2], 9);	
 
 	for (int i = 0; i < 3; ++i)
 	{
@@ -90,7 +90,7 @@ void SplashScene::update(float delta)
 		i = 1;
 		CCSprite* nut1 = CCSprite::create("scratch_1.png");
 		nut1->setPosition(ccp(WIDTH/2 + 30, HEIGHT/2 + 30));
-		addChild(nut1, 10);
+		addChild(nut1, 8);
 	}
 
 	if(localTime < 1  && localTime + delta >= 1)
@@ -98,7 +98,7 @@ void SplashScene::update(float delta)
 		i = 2;
 		CCSprite* nut2 = CCSprite::create("scratch_2.png");
 		nut2->setPosition(ccp(WIDTH/2 - 40, HEIGHT/2 - 40));
-		addChild(nut2, 11);
+		addChild(nut2, 8);
 	}
 
 	localTime += delta;
