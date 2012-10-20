@@ -17,6 +17,7 @@ class MenuScene : public CCLayer
 private:
 	//background
 	CCSprite* m_spBackground;
+	CCSprite* m_sprLogo;
 
 	//menuitem
 	CCMenuItemImage* m_itemPlay;
