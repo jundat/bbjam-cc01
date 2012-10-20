@@ -44,7 +44,7 @@ bool MainGameScene::init()
 
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 	this->setTouchEnabled(true);
-
+	
 	return true;
 }
 
@@ -156,7 +156,19 @@ void MainGameScene::onReplay(CCObject* sender)
 {
 
 }
-
+void MainGameScene::onRetry(CCObject* sender)
+{
+	CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
+}
+void MainGameScene::onNext(CCObject* sender)
+{
+	if(GameData::sharedGameData()->g_CurrentLevel == GameData::sharedGameData()->g_UnlockLevel && GameData::sharedGameData()->g_UnlockLevel< MAX_LEVEL)
+	{
+		GameData::sharedGameData()->g_CurrentLevel++;
+		GameData::sharedGameData()->g_UnlockLevel++;
+		CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
+	}
+}
 void MainGameScene::onResume(CCObject* sender)
 {
 	CCScaleTo *scale1 = CCScaleTo::create(0.2, 0);
@@ -169,7 +181,6 @@ void MainGameScene::onResume(CCObject* sender)
 	m_miResume->runAction(scale2);
 	m_miBackMenu->runAction(scale3);
 }
-
 void MainGameScene::onBackMenu(CCObject* sender)
 {
 	CCDirector::sharedDirector()->replaceScene(MenuScene::scene());
@@ -212,4 +223,45 @@ void MainGameScene::onRockboxz(CCObject* sender)
 	m_miRockBoxz->runAction(scale3);
 
 	m_Level->getPlayer()->changePlayerType(PLAYER_ROCKBOXZ);
+}
+void MainGameScene::onLost ()
+{
+	CCLayer* pDialog = CCLayer::create();
+	CCSprite* pBoard = CCSprite::spriteWithFile("board.png");
+	CCMenuItemImage* miReplay = CCMenuItemImage::create("btn_replay.png", "btn_replay.png", this, menu_selector(MainGameScene::onReplay));
+	CCMenuItemImage* miBackMenu = CCMenuItemImage::create("btn_menu.png", "btn_menu.png", this, menu_selector(MainGameScene::onBackMenu));
+	CCMenu* pMenu = CCMenu::create(miReplay,miBackMenu,NULL);;
+
+	pDialog->setPosition(WIDTH>>1,HEIGHT>>1);
+	pBoard->setPosition(CCPointZero);
+	miReplay->setPosition(ccp(miReplay->getContentSize().width/2,miReplay->getContentSize().height/2));
+	miBackMenu->setPosition(ccp(pDialog->getContentSize().width-miBackMenu->getContentSize().width/2,miBackMenu->getContentSize().height/2));	
+	pMenu->setPosition(CCPointZero);
+
+	pDialog->addChild(pBoard);
+	pBoard->addChild(pMenu);
+	this->addChild(pDialog);
+
+
+}
+void MainGameScene::onWin ()
+{
+	CCLayer* pDialog = CCLayer::create();
+	CCSprite* pBoard = CCSprite::spriteWithFile("board.png");
+	CCMenuItemImage* miReplay = CCMenuItemImage::create("btn_replay.png", "btn_replay.png", this, menu_selector(MainGameScene::onRetry));
+	CCMenuItemImage* miBackMenu = CCMenuItemImage::create("btn_menu.png", "btn_menu.png", this, menu_selector(MainGameScene::onBackMenu));
+	CCMenuItemImage* miNext = CCMenuItemImage::create("btn_resume.png", "btn_resume.png", this, menu_selector(MainGameScene::onNext));
+
+	CCMenu* pMenu = CCMenu::create(miReplay,miBackMenu,miNext,NULL);;
+
+	pDialog->setPosition(WIDTH>>1,HEIGHT>>1);
+	pBoard->setPosition(CCPointZero);
+	miReplay->setPosition(ccp(miReplay->getContentSize().width/2,miReplay->getContentSize().height/2));
+	miBackMenu->setPosition(ccp(pDialog->getContentSize().width/2-miBackMenu->getContentSize().width/2,miBackMenu->getContentSize().height/2));	
+	miNext->setPosition(ccp(pDialog->getContentSize().width-miBackMenu->getContentSize().width/2,miBackMenu->getContentSize().height/2));	
+	pMenu->setPosition(CCPointZero);
+
+	pDialog->addChild(pBoard);
+	pBoard->addChild(pMenu);
+	this->addChild(pDialog);
 }

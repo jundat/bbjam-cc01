@@ -23,4 +23,5 @@ GameData::GameData()
 {
 	g_Gravity = GRAVITY_DOWN;
 	g_CurrentLevel = 22;
+	g_UnlockLevel = 10;
 }

@@ -7,6 +7,7 @@
 
 #include "Obj_Player.h"
 #include "GameConstant.h"
+#include "PlayerEyes.h"
 #include "GameData.h"
 #include "math.h"
 
@@ -15,10 +16,14 @@ Obj_Player::Obj_Player(float x, float y):GameObject(x, y)
 //	m_Sprite = CreateSprite();
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("character.plist");
 	m_Sprite = CCSprite::createWithSpriteFrameName("megaboxz.png");
+	//CCLog("Size player w: %i-- h: %i",m_Sprite->getContentSize().width,m_Sprite->getContentSize().height);
 	if (m_Sprite != 0)
 		this->addChild(m_Sprite);
 
 	m_PlayerType = PLAYER_MEGABOXZ;
+	m_Eyes = new PlayerEyes();
+	m_Eyes->setPosition(CCPointZero);
+	this->addChild(m_Eyes);
 	m_iW = GRID_SIZE * 2;
 	m_iH = GRID_SIZE * 2;
 }

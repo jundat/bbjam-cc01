@@ -34,19 +34,20 @@ bool SelectLevelScene::init()
 	{
 		return false;
 	}
-	
-	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	m_index =0;
+	m_total = MAX_LEVEL/20+1;
+
 	m_pSpritebackground = CCSprite::spriteWithFile("background1.png");
 	m_pSpritebackground->setPosition(ccp(WIDTH >> 1, HEIGHT >> 1));
 	this->addChild(m_pSpritebackground);
 
-	m_index =0;
-	m_total = MAX_LEVEL/20+1;
+	
 	initControll();
 	m_pLayerLevel = initLevelLayer(m_index);
 	this->addChild(m_pLayerLevel);
 	m_pLayerIndex = NULL;
 	showIndexLayer();
+	
 	return true;
 }
 
@@ -60,6 +61,7 @@ void SelectLevelScene::onTouchbtnLevel(CCObject* pSender)
 
 	CCMenuItem* pMenuItem = (CCMenuItem*)pSender;
 	int level = pMenuItem->getZOrder()-1000+1;
+	if(level<28)
 	CCLog("Index level : %i",level);
 	GameData::sharedGameData()->g_CurrentLevel = level;
 	CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
@@ -100,8 +102,8 @@ void SelectLevelScene::onTouchbtnPrev(CCObject* pSender)
 	CCActionInterval*  actionTo = CCMoveTo::create(1.0f, CCPointMake(WIDTH, 0));
 
 	CCFiniteTimeAction* action = CCSequence::create( CCEaseBackInOut::create(actionTo),
-		CCCallFuncN::create(this,callfuncN_selector(SelectLevelScene::onChangeLayerComplete)), 
-		NULL);
+				CCCallFuncN::create(this,callfuncN_selector(SelectLevelScene::onChangeLayerComplete)), 
+				NULL);
 	m_pLayerLevel->runAction(action);
 
 	m_pLayerLevel = initLevelLayer(m_index);
@@ -147,12 +149,13 @@ void SelectLevelScene::initControll()
 }
 CCLayer* SelectLevelScene::initLevelLayer(int index)
 {
-	int CUR_UNLOCK_LEVEL = 10;
-	int Start = 3;
+	int CUR_UNLOCK_LEVEL = GameData::sharedGameData()->g_UnlockLevel;
+	int Start = 0;
 	CCLayer* layerLevel= CCLayer::create();
-	layerLevel->setPosition(CCPointZero);
-
 	CCMenu* pMenuLevel = CCMenu::create();
+
+	
+	layerLevel->setPosition(CCPointZero);
 	pMenuLevel->setPosition(CCPointZero);
 	layerLevel->addChild(pMenuLevel);
 	
@@ -162,15 +165,15 @@ CCLayer* SelectLevelScene::initLevelLayer(int index)
 		int x = 120 + (i%4)*176;
 		int y = HEIGHT-( 350 + (i/4)*150);	
 
-		if ((i+index*20)<= CUR_UNLOCK_LEVEL)
+		if ((i+index*20)< CUR_UNLOCK_LEVEL)
 		{
 			pMenuImage = CCMenuItemImage::create(
 				"level_unlock.png","level_unlock_select.png",this,menu_selector(SelectLevelScene::onTouchbtnLevel));
 
 			char buff[100];
-			sprintf(buff, "%i", i);
-
+			sprintf(buff, "%i", i+index*20+1);
 			CCLabelTTF* pLbNum = CCLabelTTF::create( buff,"Arial", 50);
+
 			pLbNum->setPosition(ccp(x,y));
 			layerLevel->addChild(pLbNum);
 
@@ -198,16 +201,20 @@ void SelectLevelScene::showIndexLayer ()
 		m_pLayerIndex->removeFromParentAndCleanup(true);
 	}
 	m_pLayerIndex = CCLayer::create();
-	m_pLayerIndex->setPosition(CCPointZero);
+	
+
 	for(int i = 0; i < (m_total);i++)
 	{
-		int x = (i - (m_total>>1))*50 + (m_total%2?25:0)+WIDTH>>1;
+		int x = (i - (m_total>>1))*100 + (m_total%2?0:50)+WIDTH>>1;
 		CCSprite* pSIndex = CCSprite::create((i==m_index?"c_w.png":"c_b.png"));
 		pSIndex->setPosition(ccp(x,240));
 		m_pLayerIndex->addChild(pSIndex);
 	}
 
+	m_pLayerIndex->setPosition(CCPointZero);
 	this->addChild(m_pLayerIndex);
+
+	
 }
 
 void SelectLevelScene::onChangeLayerComplete(CCNode* psender)
