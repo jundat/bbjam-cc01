@@ -17,6 +17,8 @@ public:
 	int g_Gravity;
 	int g_CurrentLevel;
 	int g_UnlockLevel;
+	void readLevel ();
+	void writeLevel ();
 private:
 	GameData();
 };
