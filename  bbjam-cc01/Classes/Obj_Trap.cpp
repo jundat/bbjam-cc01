@@ -13,7 +13,12 @@ Obj_Trap::Obj_Trap(int x, int y):GameObject(x, y)
 	m_Sprite = CreateSprite();
 
 	if (m_Sprite != 0)
+	{
 		this->addChild(m_Sprite);
+		CCRepeatForever *actionForever = new CCRepeatForever();
+		actionForever->initWithAction(CCRotateBy::create(1, 360));
+		m_Sprite->runAction(actionForever);
+	}
 }
 
 
