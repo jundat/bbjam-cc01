@@ -29,11 +29,11 @@ bool MainGameScene::init()
 	{
 		return false;
 	}
-	m_sprBackground = CCSprite::spriteWithFile("background1.png");
+	m_sprBackground = CCSprite::spriteWithFile("background2.png");
 	m_sprBackground->setPosition(ccp(WIDTH >> 1, HEIGHT >> 1));
 	this->addChild(m_sprBackground);
 
-	Level *level = LevelManager::sharedLevelManager()->getLevel(1);
+	Level *level = LevelManager::sharedLevelManager()->getLevel(22);
 	this->addChild(level);
 	level->setPosition(48, 250);
 
