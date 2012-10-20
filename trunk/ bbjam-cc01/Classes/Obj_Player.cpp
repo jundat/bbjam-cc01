@@ -34,22 +34,25 @@ void Obj_Player::changePlayerType(int playerID)
 	CCLog("change player type = %i", playerID);
 	if (m_PlayerType == playerID)
 		return;
-	CCLog("1");
 	m_PlayerType = playerID;
-	CCLog("2");
 	if (m_PlayerType == PLAYER_MEGABOXZ)
 	{
-		m_Sprite->spriteWithSpriteFrameName("megaboxz.png");CCLog("3");
+		CCSprite *sprite = CCSprite::createWithSpriteFrameName("megaboxz.png");
+		m_Sprite->setTexture(sprite->getTexture());
+		m_Sprite->setTextureRect(sprite->getTextureRect());
 	}
 	else if (m_PlayerType == PLAYER_ROCKBOXZ)
 	{
-		m_Sprite->spriteWithSpriteFrameName("rockboxz.png");CCLog("4");
+		CCSprite *sprite = CCSprite::createWithSpriteFrameName("rockboxz.png");
+		m_Sprite->setTexture(sprite->getTexture());
+		m_Sprite->setTextureRect(sprite->getTextureRect());
 	}
 	else if (m_PlayerType == PLAYER_SPIDERBOXZ)
 	{
-		m_Sprite->spriteWithSpriteFrameName("spiderboxz.png");CCLog("5");
+		CCSprite *sprite = CCSprite::createWithSpriteFrameName("spiderboxz.png");
+		m_Sprite->setTexture(sprite->getTexture());
+		m_Sprite->setTextureRect(sprite->getTextureRect());
 	}
-	CCLog("6");
 }
 
 int Obj_Player::getPlayerType()
