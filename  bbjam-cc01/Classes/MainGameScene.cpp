@@ -7,6 +7,7 @@
 
 #include "MainGameScene.h"
 #include "SimpleAudioEngine.h"
+#include "AudioManager.h"
 #include "GameConstant.h"
 #include "Obj_Stone.h"
 #include "Obj_Player.h"
@@ -33,6 +34,7 @@ bool MainGameScene::init()
 	{
 		return false;
 	}
+
 	m_sprBackground = CCSprite::spriteWithFile("background2.png");
 	m_sprBackground->setPosition(ccp(WIDTH >> 1, HEIGHT >> 1));
 	this->addChild(m_sprBackground);

@@ -13,7 +13,6 @@
 #include "AudioManager.h"
 #include "DefileMacro.h"
 #include "selectLevelScene.h"
-#include "AudioManager.h"
 
 using namespace CocosDenshion;
 
@@ -106,29 +105,35 @@ bool MenuScene::init()
 
 void MenuScene::gotoPlay(CCObject* sender)
 {
-	AudioManager::sharedAudioManager()->StopBackground("sndMenu.mp3");
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
+
+	//
 	CCDirector::sharedDirector()->replaceScene(SelectLevelScene::scene());
 }
 
-/*
-void MenuScene::gotoOption(CCObject* sender)
-{
-
-}
-*/
-
 void MenuScene::gotoTurtorial(CCObject* sender)
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
 
+	//
 }
 
 void MenuScene::gotoAbout(CCObject* sender)
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
+
+	//
 	CCDirector::sharedDirector()->replaceScene(AboutScene::scene());
 }
 
 void MenuScene::gotoExit(CCObject* sender)
 {
+	//
+	AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
+	//
 	CCDirector::sharedDirector()->end();
 }
 
@@ -138,12 +143,18 @@ void MenuScene::toggleMusic(CCObject* sender)
 	{
 		AudioManager::sharedAudioManager()->SetEnableBackground(false);
 		AudioManager::sharedAudioManager()->SetEnableEffect(false);
+
+		//
+		AudioManager::sharedAudioManager()->StopBackground("sndMenu.mp3");
 	}
 	else
 	{
 		AudioManager::sharedAudioManager()->SetEnableBackground(true);
 		AudioManager::sharedAudioManager()->SetEnableEffect(true);
-
+		
+		//
+		AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
+		AudioManager::sharedAudioManager()->PlayBackground("sndMenu.mp3", true);
 	}
 	
 }
