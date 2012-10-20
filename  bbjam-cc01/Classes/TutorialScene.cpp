@@ -36,9 +36,14 @@ bool TutorialScene::init()
 	m_pSpritebackground->setPosition(ccp(WIDTH >> 1, HEIGHT >> 1));
 	this->addChild(m_pSpritebackground, 0);
 
+	//
+	CCSprite* tutLine = CCSprite::create("mind_box_tut.png");
+	tutLine->setPosition(ccp(768-382, 1280-1004));
+	addChild(tutLine);
+
 	//layerLevel
 	m_index = 0;
-	m_total = 4;
+	m_total = 7;
 	initControll();
 	m_pLayerContent = initLayerContent(m_index);
 	this->addChild(m_pLayerContent, 5);
@@ -53,8 +58,10 @@ void TutorialScene::onTouchbtnNext(CCObject* pSender)
 	//
 
 	//do not slide around
-	m_index++;
-	m_index = (m_index % m_total);
+	if(m_index < m_total - 1)
+		m_index++;
+	else
+		return;
 
 	CCActionInterval*  actionTo = CCMoveTo::create(1.0f, CCPointMake(- WIDTH, 0));
 	CCFiniteTimeAction* action = CCSequence::create(
@@ -79,9 +86,10 @@ void TutorialScene::onTouchbtnPrev(CCObject* pSender)
 	//
 
 	//index
-	m_index--;
-	if(m_index < 0)
-		m_index = m_total - 1;
+	if(m_index > 0)
+		m_index--;
+	else
+		return;
 
 	CCActionInterval*  actionTo = CCMoveTo::create(1.0f, CCPointMake(WIDTH, 0));
 	CCFiniteTimeAction* action = CCSequence::create( CCEaseBackInOut::create(actionTo),
@@ -143,8 +151,36 @@ CCLayer* TutorialScene::initLayerContent(int pageIndex)
 	CCLayer* layerLevel= CCLayer::create();
 	layerLevel->setPosition(CCPointZero);
 
-	CCSprite* background = CCSprite::create("tutBg.png");
-	background->setPosition(ccp(WIDTH/2, HEIGHT/2));
+	char* fileName = "";
+
+	switch(pageIndex)
+	{
+	case 0:
+		fileName = "st1.png";
+		break;
+	case 1:
+		fileName = "st2.png";
+		break;
+	case 2:
+		fileName = "st3.png";
+		break;
+	case 3:
+		fileName = "st4.png";
+		break;
+	case 4:
+		fileName = "st5.png";
+		break;
+	case 5:
+		fileName = "st6.png";
+		break;
+	case 6:
+		fileName = "st7.png";
+		break;
+
+	}
+
+	CCSprite* background = CCSprite::create(fileName);
+	background->setPosition(ccp(768-384, 1280-440));
 	layerLevel->addChild(background);
 
 	//

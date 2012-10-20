@@ -59,24 +59,24 @@ bool AboutScene::init()
 	CCLabelBMFont* version = CCLabelBMFont::create("Version 1.0.0", "idevice_r_50.fnt");
 
 	gameName->setPosition(ccp(s.width/2, s.height/2));
-	teamName->setPosition(ccp(s.width/2, s.height/2 - 50));
-	version->setPosition(ccp(s.width/2, s.height/2 - 100));
+	teamName->setPosition(ccp(s.width/2, s.height/2 - 70));
+	version->setPosition(ccp(s.width/2, s.height/2 - 140));
 
 	addChild(gameName);
 	addChild(teamName);
 	addChild(version);
 
 	//menu
-	CCMenuItemImage* itemBack = CCMenuItemImage::create("button_up.png", "button_down.png", this, menu_selector(AboutScene::gotoMenu) );
-	CCLabelBMFont* back = CCLabelBMFont::create("Back", "idevice_r_50.fnt");
+	CCMenuItemImage* itemBack = CCMenuItemImage::create("btn_home.png", "btn_home.png", this, menu_selector(AboutScene::gotoMenu) );
+	//CCLabelBMFont* back = CCLabelBMFont::create("Back", "idevice_r_50.fnt");
 
 	itemBack->setPosition(0, - s.height/2 + 70);
-	back->setPosition(s.width/2, 75);
+	//back->setPosition(s.width/2, 75);
 
 	CCMenu* menu = CCMenu::create(itemBack, NULL);
 
 	addChild(menu);
-	addChild(back);
+	//addChild(back);
 
 	//
 	return true;

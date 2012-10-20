@@ -21,7 +21,7 @@ MenuScene::MenuScene()
 {
 	if(!SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
 	{
-		AudioManager::sharedAudioManager()->PlayBackground("sndMenu.mp3", true);
+		AudioManager::sharedAudioManager()->PlayBackground("sndMenu.wav", true);
 	}
 }
 
@@ -164,7 +164,7 @@ void MenuScene::toggleMusic(CCObject* sender)
 		
 		//
 		AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
-		AudioManager::sharedAudioManager()->PlayBackground("sndMenu.mp3", true);
+		AudioManager::sharedAudioManager()->PlayBackground("sndMenu.wav", true);
 	}
 	
 }
