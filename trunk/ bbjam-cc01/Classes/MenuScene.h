@@ -20,10 +20,11 @@ private:
 
 	//menuitem
 	CCMenuItemImage* m_itemPlay;
-	CCMenuItemImage* m_itemOption;
+	//CCMenuItemImage* m_itemOption;
 	CCMenuItemImage* m_itemTutorial;
 	CCMenuItemImage* m_itemAbout;
 	CCMenuItemImage* m_itemExit;
+	CCMenuItemToggle* m_itemMusic;
 
 public:
 	MenuScene();
@@ -34,10 +35,13 @@ public:
 	CREATE_FUNC(MenuScene);
 	
 	void gotoPlay(CCObject* sender);
-	void gotoOption(CCObject* sender);
+	//void gotoOption(CCObject* sender);
 	void gotoAbout(CCObject* sender);
 	void gotoTurtorial(CCObject* sender);
 	void gotoExit(CCObject* sender);
+
+	//handle event click button music
+	void toggleMusic(CCObject* sender);
 };
 
 #endif /* MENUSCENE_H_ */

@@ -111,14 +111,15 @@ void SplashScene::update(float delta)
 			CCPointMake(WIDTH/2 + (i-1)*200, HEIGHT/2 - 306 / 2), //v? trí rõi t?i
 			120, //chi?u cao nh?y lên trý?c khi rõi
 			1), //s? l?n bounce
-			CCRotateBy::create(0.6, 360 * (i + 1)),
+			CCRotateBy::create(0.6, 180 * (i + 1)),
 			NULL);
+
 		CCAction*  jump6 = CCSpawn::create(
 			CCJumpTo::create(0.4 + (i+1)*0.4, //th?i gian rõi
 			CCPointMake(WIDTH/2 + (i-1)*200, HEIGHT/2 - 306 / 2), //v? trí rõi t?i
 			90, //chi?u cao nh?y lên trý?c khi rõi
 			2), //s? l?n bounce
-			CCRotateBy::create(0.4 + (i+1)*0.4, 720),
+			CCRotateBy::create(0.4 + (i+1)*0.4, (i+1)*180),
 			NULL);
 
 		//CCAction*  jump7 = CCSpawn::create(
@@ -130,11 +131,11 @@ void SplashScene::update(float delta)
 		//	NULL);
 		
 		CCAction*  jump8 = CCSpawn::create(
-			CCJumpTo::create(0.2, //th?i gian rõi
+			CCJumpTo::create(0.4, //th?i gian rõi
 			CCPointMake(WIDTH/2 + (i-1)*200, HEIGHT/2 - 306 / 2), //v? trí rõi t?i
 			30, //chi?u cao nh?y lên trý?c khi rõi
 			1), //s? l?n bounce
-			CCRotateBy::create(0.2, 360),
+			CCRotateBy::create(0.4, 180),
 			NULL);
 
 		if(i != 2)

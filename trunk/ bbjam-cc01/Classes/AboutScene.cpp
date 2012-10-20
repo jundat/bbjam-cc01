@@ -46,12 +46,12 @@ bool AboutScene::init()
 	CCSprite* sprBackground;
 	sprBackground = CCSprite::create("background1.png");
 	sprBackground->setPosition(ccp(s.width/2, s.height/2));
-	addChild(sprBackground, 0);
+	addChild(sprBackground);
 
 	//logo
 	CCSprite* sprLogo = CCSprite::create("imgLogo.png");
 	sprLogo->setPosition(ccp(s.width/2, 860));
-	addChild(sprLogo, 1);
+	addChild(sprLogo);
 
 	//text
 	CCLabelBMFont* gameName = CCLabelBMFont::create("Mind Boxz", "idevice_r_50.fnt");
@@ -62,15 +62,21 @@ bool AboutScene::init()
 	teamName->setPosition(ccp(s.width/2, s.height/2 - 50));
 	version->setPosition(ccp(s.width/2, s.height/2 - 100));
 
-	addChild(gameName, 2);
-	addChild(teamName, 2);
-	addChild(version, 2);
+	addChild(gameName);
+	addChild(teamName);
+	addChild(version);
 
 	//menu
 	CCMenuItemImage* itemBack = CCMenuItemImage::create("button_up.png", "button_down.png", this, menu_selector(AboutScene::gotoMenu) );
+	CCLabelBMFont* back = CCLabelBMFont::create("back", "idevice_r_50.fnt");
+
 	itemBack->setPosition(0, - s.height/2 + 70);
+	back->setPosition(s.width/2, 75);
+
 	CCMenu* menu = CCMenu::create(itemBack, NULL);
-	addChild(menu, 2);
+
+	addChild(menu);
+	addChild(back);
 
 	//
 	return true;
