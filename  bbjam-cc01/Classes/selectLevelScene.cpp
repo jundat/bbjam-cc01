@@ -55,7 +55,7 @@ void SelectLevelScene::onTouchbtnLevel(CCObject* pSender)
 {
 	//
 	AudioManager::sharedAudioManager()->PlayEffect("sndButton.wav", 0);
-	AudioManager::sharedAudioManager()->StopBackground("sndMenu.mp3");
+	AudioManager::sharedAudioManager()->StopBackground();
 	
 	
 

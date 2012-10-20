@@ -155,7 +155,7 @@ void MenuScene::toggleMusic(CCObject* sender)
 		AudioManager::sharedAudioManager()->SetEnableEffect(false);
 
 		//
-		AudioManager::sharedAudioManager()->StopBackground("sndMenu.mp3");
+		AudioManager::sharedAudioManager()->StopBackground();
 	}
 	else
 	{
