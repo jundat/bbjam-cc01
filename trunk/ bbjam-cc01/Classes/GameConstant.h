@@ -30,7 +30,7 @@ static const int MAP_PLAYER	= 2;
 static const int MAP_TRAP		= 3;
 static const int MAP_TARGET	= 4;
 
-static const int MAX_LEVEL = 28;
+static int MAX_LEVEL = 68;
 
 static const int PLAYER_MEGABOXZ	= 0;
 static const int PLAYER_ROCKBOXZ	= 1;

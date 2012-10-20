@@ -6,6 +6,8 @@
 #include "actions\CCActionInstant.h"
 #include <string>
 #include <stdlib.h>
+#include "MenuScene.h"
+#include "MainGameScene.h"
 USING_NS_CC;
 //using namespace CocosDenshion;
 #define CCCA(x)   (x->copy()->autorelease())
@@ -43,6 +45,9 @@ void SelectLevelScene::onTouchbtnLevel(CCObject* pSender)
 	CCMenuItem* pMenuItem = (CCMenuItem*)pSender;
 	int level = pMenuItem->getZOrder()-1000+1;
 	CCLog("Index level : %i",level);
+	g_CurrentLevel = level;
+	CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
+
 }
 
 void SelectLevelScene::onTouchbtnNext(CCObject* pSender)
@@ -88,7 +93,7 @@ void SelectLevelScene::onTouchbtnPrev(CCObject* pSender)
 
 void SelectLevelScene::onTouchbtnHome(CCObject* pSender)
 {
-
+	CCDirector::sharedDirector()->replaceScene(MenuScene::scene());
 }
 
 void SelectLevelScene::initControll()

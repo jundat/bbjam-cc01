@@ -12,6 +12,7 @@
 #include "AboutScene.h"
 #include "AudioManager.h"
 #include "DefileMacro.h"
+#include "selectLevelScene.h"
 
 using namespace CocosDenshion;
 
@@ -96,7 +97,7 @@ bool MenuScene::init()
 
 void MenuScene::gotoPlay(CCObject* sender)
 {
-	CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
+	CCDirector::sharedDirector()->replaceScene(SelectLevelScene::scene());
 }
 
 /*
