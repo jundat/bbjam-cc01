@@ -13,7 +13,7 @@
 class Obj_Target : public GameObject
 {
 public:
-	Obj_Target(int x, int y);
+	Obj_Target(float x, float y);
 	int GetID();
 	CCSprite* CreateSprite();
 };

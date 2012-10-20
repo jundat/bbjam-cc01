@@ -9,9 +9,12 @@
 #include "SimpleAudioEngine.h"
 #include "GameConstant.h"
 #include "Obj_Stone.h"
+#include "Obj_Player.h"
 #include "LevelManager.h"
+#include "MenuScene.h"
+#include "math.h"
+#include "Level.h"
 
-USING_NS_CC;
 using namespace CocosDenshion;
 
 CCScene* MainGameScene::scene()
@@ -33,15 +36,170 @@ bool MainGameScene::init()
 	m_sprBackground->setPosition(ccp(WIDTH >> 1, HEIGHT >> 1));
 	this->addChild(m_sprBackground);
 
-	Level *level = LevelManager::sharedLevelManager()->getLevel(22);
-	this->addChild(level);
-	level->setPosition(48, 250);
-
 	InitMap();
+	initSubMenu();
+
+	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+	this->setTouchEnabled(true);
+	scheduleUpdate();
+
 	return true;
+}
+
+bool MainGameScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
+{
+	m_HelperPoint = pTouch->getLocation();
+	return true;
+}
+
+void MainGameScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
+{
+	CCPoint pt = pTouch->getLocation();
+
+	int deltaX = pt.x - m_HelperPoint.x;
+	int deltaY = pt.y - m_HelperPoint.y;
+
+	if (abs(deltaX) < 150 && abs(deltaY) < 150)
+		return;
+
+	if (abs(deltaX) > abs(deltaY))
+	{
+		if (deltaX < 0)
+			g_Gravity = GRAVITY_LEFT;//left
+		else
+			g_Gravity = GRAVITY_RIGHT;//right
+	}
+	else
+	{
+		if (deltaY < 0)
+			g_Gravity = GRAVITY_DOWN;//down
+		else
+			g_Gravity = GRAVITY_UP;//top
+	}
+	UpdateGravity();
 }
 
 void MainGameScene::InitMap()
 {
+	m_Level = LevelManager::sharedLevelManager()->getLevel(g_CurrentLevel);
+	this->addChild(m_Level);
+	m_Level->setPosition(48, 250);
+}
 
+void MainGameScene::UpdateGravity()
+{
+//	m_Level->getPlayer()->updateGravity();
+}
+
+void MainGameScene::update(float delta)
+{
+
+}
+
+void MainGameScene::initSubMenu()
+{
+	m_miPause = CCMenuItemImage::create("btn_pause.png", "btn_pause.png", this, menu_selector(MainGameScene::onPause));
+	m_miReplay = CCMenuItemImage::create("btn_replay.png", "btn_replay.png", this, menu_selector(MainGameScene::onReplay));
+	m_miResume = CCMenuItemImage::create("btn_resume.png", "btn_resume.png", this, menu_selector(MainGameScene::onResume));
+	m_miBackMenu = CCMenuItemImage::create("btn_menu.png", "btn_menu.png", this, menu_selector(MainGameScene::onBackMenu));
+	m_miMegaBoxz = CCMenuItemImage::create("megaboxz.png", "megaboxz.png", this, menu_selector(MainGameScene::onMegaBoxz));
+	m_miSpiderBoxz = CCMenuItemImage::create("spiderboxz.png", "spiderboxz.png", this, menu_selector(MainGameScene::onSpiderBoxz));
+	m_miRockBoxz = CCMenuItemImage::create("rockboxz.png", "rockboxz.png", this, menu_selector(MainGameScene::onRockboxz));
+
+	if (!ALLOW_TYPE_PLAYER[g_CurrentLevel][0]) m_miMegaBoxz->setVisible(false);
+	if (!ALLOW_TYPE_PLAYER[g_CurrentLevel][1]) m_miSpiderBoxz->setVisible(false);
+	if (!ALLOW_TYPE_PLAYER[g_CurrentLevel][2]) m_miRockBoxz->setVisible(false);
+
+	m_miMegaBoxz->setPosition(100, 100);
+	m_miSpiderBoxz->setPosition(100, 100);
+	m_miRockBoxz->setPosition(100, 100);
+
+	m_miPause->setPosition(698, 1210);
+	m_miReplay->setPosition(200, 1210);
+	m_miResume->setPosition(400, 1210);
+	m_miBackMenu->setPosition(600, 1210);
+
+	m_miReplay->setScale(0);
+	m_miResume->setScale(0);
+	m_miBackMenu->setScale(0);
+	m_miMegaBoxz->setScale(0);
+
+	m_Menu = CCMenu::create(m_miPause, m_miReplay, m_miResume, m_miBackMenu, m_miMegaBoxz, m_miSpiderBoxz, m_miRockBoxz, NULL);
+	m_Menu->setPosition(0, 0);
+	this->addChild(m_Menu);
+}
+
+void MainGameScene::onPause(CCObject* sender)
+{
+	CCScaleTo *scale1 = CCScaleTo::create(0.2, 1.0);
+	CCScaleTo *scale2 = CCScaleTo::create(0.2, 1.0);
+	CCScaleTo *scale3 = CCScaleTo::create(0.2, 1.0);
+	CCScaleTo *scale4 = CCScaleTo::create(0.2, 0);
+
+	m_miPause->runAction(scale4);
+	m_miReplay->runAction(scale1);
+	m_miResume->runAction(scale2);
+	m_miBackMenu->runAction(scale3);
+}
+
+void MainGameScene::onReplay(CCObject* sender)
+{
+
+}
+
+void MainGameScene::onResume(CCObject* sender)
+{
+	CCScaleTo *scale1 = CCScaleTo::create(0.2, 0);
+	CCScaleTo *scale2 = CCScaleTo::create(0.2, 0);
+	CCScaleTo *scale3 = CCScaleTo::create(0.2, 0);
+	CCScaleTo *scale4 = CCScaleTo::create(0.2, 1);
+
+	m_miPause->runAction(scale4);
+	m_miReplay->runAction(scale1);
+	m_miResume->runAction(scale2);
+	m_miBackMenu->runAction(scale3);
+}
+
+void MainGameScene::onBackMenu(CCObject* sender)
+{
+	CCDirector::sharedDirector()->replaceScene(MenuScene::scene());
+}
+
+void MainGameScene::onMegaBoxz(CCObject* sender)
+{
+	CCScaleTo *scale1 = CCScaleTo::create(0.2, 0);
+	CCScaleTo *scale2 = CCScaleTo::create(0.2, 1.0);
+	CCScaleTo *scale3 = CCScaleTo::create(0.2, 1.0);
+
+	m_miMegaBoxz->runAction(scale1);
+	m_miSpiderBoxz->runAction(scale2);
+	m_miRockBoxz->runAction(scale3);
+
+	m_Level->getPlayer()->changePlayerType(PLAYER_MEGABOXZ);
+}
+
+void MainGameScene::onSpiderBoxz(CCObject* sender)
+{
+	CCScaleTo *scale1 = CCScaleTo::create(0.2, 1.0);
+	CCScaleTo *scale2 = CCScaleTo::create(0.2, 0);
+	CCScaleTo *scale3 = CCScaleTo::create(0.2, 1.0);
+
+	m_miMegaBoxz->runAction(scale1);
+	m_miSpiderBoxz->runAction(scale2);
+	m_miRockBoxz->runAction(scale3);
+
+	m_Level->getPlayer()->changePlayerType(PLAYER_SPIDERBOXZ);
+}
+
+void MainGameScene::onRockboxz(CCObject* sender)
+{
+	CCScaleTo *scale1 = CCScaleTo::create(0.2, 1.0);
+	CCScaleTo *scale2 = CCScaleTo::create(0.2, 1.0);
+	CCScaleTo *scale3 = CCScaleTo::create(0.2, 0);
+
+	m_miMegaBoxz->runAction(scale1);
+	m_miSpiderBoxz->runAction(scale2);
+	m_miRockBoxz->runAction(scale3);
+
+	m_Level->getPlayer()->changePlayerType(PLAYER_ROCKBOXZ);
 }

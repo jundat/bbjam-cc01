@@ -8,7 +8,7 @@
 #include "Obj_Stone.h"
 #include "GameConstant.h"
 
-Obj_Stone::Obj_Stone(int x, int y):GameObject(x, y)
+Obj_Stone::Obj_Stone(float x, float y):GameObject(x, y)
 {
 	m_Sprite = CreateSprite();
 

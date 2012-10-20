@@ -8,7 +8,7 @@
 #include "Obj_Wood.h"
 #include "GameConstant.h"
 
-Obj_Wood::Obj_Wood(int x, int y):GameObject(x, y)
+Obj_Wood::Obj_Wood(float x, float y):GameObject(x, y)
 {
 	m_Sprite = CreateSprite();
 

@@ -5,49 +5,49 @@
 	<key>texture</key>
 	<dict>
 		<key>width</key>
-		<integer>128</integer>
+		<integer>256</integer>
 		<key>height</key>
-		<integer>128</integer>
+		<integer>256</integer>
 	</dict>
 	<key>frames</key>
 	<dict>
 		<key>megaboxz.png</key>
 		<dict>
 			<key>x</key>
-			<integer>47</integer>
+			<integer>91</integer>
 			<key>y</key>
 			<integer>1</integer>
 			<key>width</key>
-			<integer>45</integer>
+			<integer>89</integer>
 			<key>height</key>
-			<integer>45</integer>
+			<integer>90</integer>
 			<key>offsetX</key>
-			<real>0</real>
+			<real>0.5</real>
 			<key>offsetY</key>
 			<real>0</real>
 			<key>originalWidth</key>
-			<integer>45</integer>
+			<integer>90</integer>
 			<key>originalHeight</key>
-			<integer>45</integer>
+			<integer>90</integer>
 		</dict>
 		<key>rockboxz.png</key>
 		<dict>
 			<key>x</key>
 			<integer>1</integer>
 			<key>y</key>
-			<integer>47</integer>
+			<integer>92</integer>
 			<key>width</key>
-			<integer>45</integer>
+			<integer>89</integer>
 			<key>height</key>
-			<integer>45</integer>
+			<integer>90</integer>
 			<key>offsetX</key>
-			<real>0</real>
+			<real>0.5</real>
 			<key>offsetY</key>
 			<real>0</real>
 			<key>originalWidth</key>
-			<integer>45</integer>
+			<integer>90</integer>
 			<key>originalHeight</key>
-			<integer>45</integer>
+			<integer>90</integer>
 		</dict>
 		<key>spiderboxz.png</key>
 		<dict>
@@ -56,17 +56,17 @@
 			<key>y</key>
 			<integer>1</integer>
 			<key>width</key>
-			<integer>45</integer>
+			<integer>89</integer>
 			<key>height</key>
-			<integer>45</integer>
+			<integer>90</integer>
 			<key>offsetX</key>
-			<real>0</real>
+			<real>0.5</real>
 			<key>offsetY</key>
 			<real>0</real>
 			<key>originalWidth</key>
-			<integer>45</integer>
+			<integer>90</integer>
 			<key>originalHeight</key>
-			<integer>45</integer>
+			<integer>90</integer>
 		</dict>
 	</dict>
 </dict>

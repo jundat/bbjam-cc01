@@ -6,19 +6,12 @@
  */
 
 #include "GameObject.h"
+#include "GameConstant.h"
 
-GameObject::GameObject(int x, int y)
+GameObject::GameObject(float x, float y)
 {
 	m_iX = x;
 	m_iY = y;
-}
-
-int GameObject::GetX()
-{
-	return m_iX;
-}
-
-int GameObject::GetY()
-{
-	return m_iY;
+	m_iW = GRID_SIZE;
+	m_iH = GRID_SIZE;
 }

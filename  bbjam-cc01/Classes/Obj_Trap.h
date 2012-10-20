@@ -13,7 +13,7 @@
 class Obj_Trap : public GameObject
 {
 public:
-	Obj_Trap(int x, int y);
+	Obj_Trap(float x, float y);
 	int GetID();
 	CCSprite* CreateSprite();
 };

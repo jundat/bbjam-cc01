@@ -8,6 +8,7 @@ class Utility
 public:
 	//CCSprite* Animation (const char *format, ...)
 	static Utility* getUtility();
+	CCSprite* Animation(const char *format, int numImage);
 private:	
 	Utility();
 };
