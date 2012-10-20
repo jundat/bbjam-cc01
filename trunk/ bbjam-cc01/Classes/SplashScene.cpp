@@ -181,6 +181,6 @@ CCScene* SplashScene::scene()
 bool SplashScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
 	CCLog("SplashScene: touchdown");
-	CCDirector::sharedDirector()->replaceScene(MenuScene::scene());
+	//CCDirector::sharedDirector()->replaceScene(MenuScene::scene());
 	return true;
 }

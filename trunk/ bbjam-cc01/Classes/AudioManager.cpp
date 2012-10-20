@@ -5,8 +5,11 @@
  *      Author: Loc
  */
 
+#include "cocos2d.h"
+USING_NS_CC;
 #include "AudioManager.h"
 using namespace CocosDenshion;
+
 
 static AudioManager *m_Instance;
 
@@ -49,17 +52,17 @@ void AudioManager::SetEnableEffect(bool b)
 
 void AudioManager::LoadBackground(char* path)
 {
-	SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic(path);
+	SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(path));
 }
 
 
 void AudioManager::PlayBackground(char* path, bool loop)
 {
 	if (m_bEnableBackground)
-		SimpleAudioEngine::sharedEngine()->playBackgroundMusic(path, loop);
+		SimpleAudioEngine::sharedEngine()->playBackgroundMusic(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(path), loop);
 }
 
-void AudioManager::PauseBackground(char* path)
+void AudioManager::PauseBackground()
 {
 	if(SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
 	{
@@ -67,7 +70,7 @@ void AudioManager::PauseBackground(char* path)
 	}
 }
 
-void AudioManager::StopBackground(char* path)
+void AudioManager::StopBackground()
 {
 	if(SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
 	{
@@ -78,7 +81,7 @@ void AudioManager::StopBackground(char* path)
 void AudioManager::PlayEffect(char *path, int loopTime = 0)
 {
 	if (m_bEnableEffect)
-		SimpleAudioEngine::sharedEngine()->playEffect(path, loopTime);
+		SimpleAudioEngine::sharedEngine()->playEffect(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(path), loopTime);
 }
 
 
