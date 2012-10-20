@@ -12,7 +12,7 @@ static AudioManager *m_Instance;
 
 AudioManager::AudioManager()
 {
-
+	
 }
 
 AudioManager* AudioManager::sharedAudioManager()
@@ -59,10 +59,26 @@ void AudioManager::PlayBackground(char* path, bool loop)
 		SimpleAudioEngine::sharedEngine()->playBackgroundMusic(path, loop);
 }
 
+void AudioManager::PauseBackground(char* path)
+{
+	if(SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
+	{
+		SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+	}
+}
+
+void AudioManager::StopBackground(char* path)
+{
+	if(SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying())
+	{
+		SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(false);
+	}
+}
 
 void AudioManager::PlayEffect(char *path, int loopTime = 0)
 {
 	if (m_bEnableEffect)
 		SimpleAudioEngine::sharedEngine()->playEffect(path, loopTime);
 }
+
 
