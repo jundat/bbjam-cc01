@@ -22,7 +22,6 @@ MenuScene::MenuScene()
 
 MenuScene::~MenuScene()
 {
-
 }
 
 CCScene* MenuScene::scene()
@@ -35,6 +34,7 @@ CCScene* MenuScene::scene()
 
 bool MenuScene::init()
 {
+	//
 	if (!CCLayer::init())
 	{
 		return false;
@@ -49,6 +49,7 @@ bool MenuScene::init()
 	m_spBackground->setPosition(ccp(s.width/2, s.height/2));
 	addChild(m_spBackground);
 
+	
 
 	//menu item
 	m_itemPlay = CCMenuItemImage::create("button_up.png", "button_down.png", this, menu_selector(MenuScene::gotoPlay) );
