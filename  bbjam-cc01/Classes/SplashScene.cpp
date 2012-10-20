@@ -11,6 +11,7 @@
 #include "GameConstant.h"
 #include "MainGameScene.h"
 #include "LoadingScene.h"
+#include "MenuScene.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -164,7 +165,7 @@ void SplashScene::update(float delta)
 
 void SplashScene::gotoMenu(CCNode* sender)
 {
-	CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
+	CCDirector::sharedDirector()->replaceScene(MenuScene::scene());
 }
 
 CCScene* SplashScene::scene()
@@ -179,7 +180,7 @@ CCScene* SplashScene::scene()
 bool SplashScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
 	CCLog("SplashScene: touchdown");
-	CCDirector::sharedDirector()->replaceScene(MainGameScene::scene());
+	CCDirector::sharedDirector()->replaceScene(MenuScene::scene());
 	return true;
 }
 
