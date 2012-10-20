@@ -25,5 +25,5 @@ int Obj_Trap::GetID()
 
 CCSprite* Obj_Trap::CreateSprite()
 {
-	return CCSprite::spriteWithFile("block_1.png");
+	return CCSprite::spriteWithFile("block_4.png");
 }

@@ -15,7 +15,7 @@
 #include "Obj_Trap.h"
 #include "Obj_Wood.h"
 
-int* Level::getArrayID(int level)
+unsigned int* Level::getArrayID(int level)
 {
 	CCImage* pImage = new CCImage();
 	pImage->initWithImageFile(IMG_LEVEL[level]);
@@ -23,7 +23,7 @@ int* Level::getArrayID(int level)
 	CCLOG("Image size H = %i",pImage->getHeight());
 	unsigned int* layerPixels = (unsigned int*)pImage->getData();
 
-	return (int*)layerPixels;
+	return layerPixels;
 }
 
 
@@ -41,40 +41,57 @@ Level::Level(int level)
 
 void Level::initLevel()
 {
-	int ID;
+//	CCSpriteBatchNode *batch = new CCSpriteBatchNode::batchNodeWithFile();
+	unsigned int ID;
 	GameObject *obj;
 
-	for (int i = 0; i < NUM_GRID_WIDTH; i++)
+	CCLog("m_ArrayID = %i", MAP_COLOR_PLAYER);
+	CCLog("m_ArrayID = %i", MAP_COLOR_STONE);
+	CCLog("m_ArrayID = %i", MAP_COLOR_TRAP);
+	CCLog("m_ArrayID = %i", MAP_COLOR_WOOD);
+	CCLog("m_ArrayID = %i", MAP_COLOR_TARGET);
+	for (int i = 0; i < NUM_GRID_HEIGHT; i++)
 	{
-		for (int j = 0; j < NUM_GRID_HEIGHT; j++)
+		for (int j = 0; j < NUM_GRID_WIDTH; j++)
 		{
-			CCLog("m_ArrayID");
-			ID = m_ArrayID[j * NUM_GRID_WIDTH + i];
-			switch (ID & 0x00ffffff)
+			CCLog("i = %i", i);
+			CCLog("j = %i", j);
+			ID = m_ArrayID[i * NUM_GRID_WIDTH + j];
+			CCLog("m_ArrayID = %i", ID);
+			int random = (i * NUM_GRID_WIDTH + j);
+			CCLog("random = %i", random);
+			random = random % 5;
+			CCLog("random2 = %i", random);
+			switch (random)
 			{
-			case MAP_COLOR_PLAYER:
+			case MAP_PLAYER:
 				CCLog("MAP_COLOR_PLAYER");
-				obj = new Obj_Player(i, j);
+				obj = new Obj_Player(j, i);
+				obj->setPosition(j * GRID_SIZE, i * GRID_SIZE);
 				this->addChild(obj);
 				break;
-			case MAP_COLOR_STONE:
+			case MAP_STONE:
 				CCLog("MAP_COLOR_STONE");
-				obj = new Obj_Stone(i, j);
+				obj = new Obj_Stone(j, i);
+				obj->setPosition(j * GRID_SIZE, i * GRID_SIZE);
 				this->addChild(obj);
 				break;
-			case MAP_COLOR_TRAP:
+			case MAP_TRAP:
 				CCLog("MAP_COLOR_TRAP");
-				obj = new Obj_Trap(i, j);
+				obj = new Obj_Trap(j, i);
+				obj->setPosition(j * GRID_SIZE, i * GRID_SIZE);
 				this->addChild(obj);
 				break;
-			case MAP_COLOR_WOOD:
+			case MAP_WOOD:
 				CCLog("MAP_COLOR_WOOD");
-				obj = new Obj_Wood(i, j);
+				obj = new Obj_Wood(j, i);
+				obj->setPosition(j * GRID_SIZE, i * GRID_SIZE);
 				this->addChild(obj);
 				break;
-			case MAP_COLOR_TARGET:
+			case MAP_TARGET:
 				CCLog("MAP_COLOR_TARGET");
-				obj = new Obj_Target(i, j);
+				obj = new Obj_Target(j, i);
+				obj->setPosition(j * GRID_SIZE, i * GRID_SIZE);
 				this->addChild(obj);
 				break;
 			}

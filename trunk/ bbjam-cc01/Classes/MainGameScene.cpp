@@ -35,7 +35,7 @@ bool MainGameScene::init()
 
 	Level *level = LevelManager::sharedLevelManager()->getLevel(1);
 	this->addChild(level);
-//	level->setPosition(WIDTH >> 1, HEIGHT >> 1);
+	level->setPosition(48, 250);
 
 	InitMap();
 	return true;
