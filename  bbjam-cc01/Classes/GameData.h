@@ -16,6 +16,7 @@ public:
 	static GameData* sharedGameData();
 	int g_Gravity;
 	int g_CurrentLevel;
+	int g_UnlockLevel;
 private:
 	GameData();
 };

@@ -45,11 +45,15 @@ private:
 	void onReplay(CCObject* sender);
 	void onResume(CCObject* sender);
 	void onBackMenu(CCObject* sender);
+	void onRetry(CCObject* sender);
+	void onNext(CCObject* sender);
 
 	void onMegaBoxz(CCObject* sender);
 	void onSpiderBoxz(CCObject* sender);
 	void onRockboxz(CCObject* sender);
 
+	void onLost ();
+	void onWin  ();
 };
 
 #endif /* MAINGAMESCENE_H_ */

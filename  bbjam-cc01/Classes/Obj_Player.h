@@ -9,7 +9,7 @@
 #define OBJ_PLAYER_H_
 
 #include "GameObject.h"
-
+#include "PlayerEyes.h"
 class Obj_Player : public GameObject
 {
 public:
@@ -27,6 +27,7 @@ public:
 
 private:
 	int m_PlayerType;
+	PlayerEyes* m_Eyes;
 	float m_fTargetAngle;
 	bool m_bRotateDone;
 

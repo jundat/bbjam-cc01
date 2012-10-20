@@ -43,5 +43,11 @@ static const int GRAVITY_LEFT 	= 2;
 static const int GRAVITY_RIGHT 	= 3;
 
 static const int GRAVITY_SPEED = 5;
-
+static const int  ID_MB_DEFAULT = 0;
+static const int  ID_SB_DEFAULT = 2;
+static const int  ID_RB_DEFAULT = 1;
+static const int  ID_SMOKING    = 4;
+static const int  ID_LOOKING    = 8;
+static const int  ID_SCARING    = 12;
+static const int  ID_DEAD       = 16;
 #endif /* GAMECONSTANT_H_ */
