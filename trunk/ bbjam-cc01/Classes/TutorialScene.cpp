@@ -38,7 +38,7 @@ bool TutorialScene::init()
 
 	//
 	CCSprite* tutLine = CCSprite::create("mind_box_tut.png");
-	tutLine->setPosition(ccp(768-382, 1280-1004));
+	tutLine->setPosition(ccp(768 - 383, 1280-1004));
 	addChild(tutLine);
 
 	//layerLevel
